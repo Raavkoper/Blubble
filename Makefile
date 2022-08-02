@@ -1,6 +1,6 @@
 NAME = cub3d
 
-HEADER = includes/cub3d.h 
+HEADER = includes/blubble.h 
 
 CFLAGS = -g -Wall -Werror -Wextra
 

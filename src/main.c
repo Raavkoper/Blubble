@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "../includes/blubble.h"
 
 int main(void)
 {
