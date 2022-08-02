@@ -1,15 +1,27 @@
-#ifndef CUB3D_H
-# define CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/08/02 11:15:25 by svan-ass         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#ifndef BLUBBLE_H
+# define BLUBBLE_H
 # include <stdio.h>
 # include <stdlib.h>
+
 # include "../libraries/mlx/mlx.h"
 # include "../libraries/libft/libft.h"
 
 typedef struct s_map {
 	char			content;
 	int				x;
-	int 			y;
+	int				y;
 	struct s_map	*next;
 }				t_map;
 
@@ -19,14 +31,14 @@ typedef struct s_image {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_image;
+}	t_image;
 
-typedef	struct s_data {
+typedef struct s_data {
 	void	*mlx;
 	void	*win;
 	t_map	*map;
 	t_image	image;
-}				t_data;
+}	t_data;
 
 void	read_map(t_data *data);
 void	init_game(t_data *data);
