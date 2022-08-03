@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/08/02 11:15:25 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/08/02 13:53:00 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# include "../libraries/mlx/mlx.h"
-# include "../libraries/libft/libft.h"
+# include "../libs/mlx/mlx.h"
+# include "../libs/libft/libft.h"
 
 typedef struct s_map {
 	char			content;

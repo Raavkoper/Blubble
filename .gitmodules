@@ -1,3 +1,0 @@
-[submodule "libs/libft"] 
-  path = libs/libft 
-  url = https://github.com/Raavkoper/libft_42.git

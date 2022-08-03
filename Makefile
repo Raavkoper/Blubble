@@ -2,12 +2,12 @@ NAME = cub3d
 
 HEADER = includes/blubble.h 
 
-CFLAGS = -Imlx -g
+CFLAGS = -Imlx -g --disable-asm-optimizations
 
 CC = gcc 
 
-LIBFT = libraries/libft/libft.a
-MLX = libraries/mlx/libmlx.dylib
+LIBFT = libs/libft/libft.a
+MLX = libs/mlx/libmlx.dylib
 
 OBJS_DIR = objs
 SRC_DIR = src
@@ -25,10 +25,10 @@ $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INC) -I -c -o $@ $<
 
 $(LIBFT):
-	$(MAKE) -C libraries/libft
+	$(MAKE) -C libs/libft
 
 $(MLX):
-	@$(MAKE) -C libraries/mlx && test -e libmlx.dylib || ln -sf libraries/mlx/libmlx.dylib libmlx.dylib
+	@$(MAKE) -C libs/mlx && test -e libmlx.dylib || ln -sf libs/mlx/libmlx.dylib libmlx.dylib
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS) 
 	@$(CC) $(CFLAGS) $(INC) -I $^ -o $(NAME)
@@ -36,7 +36,7 @@ $(NAME): $(MLX) $(LIBFT) $(OBJS)
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	@make clean -C libraries/libft
+	@make clean -C libs/libft
 	@rm -f libmlx.dylib
 	@echo "\033[1;34mA\033[1;31ml\033[1;32ml \033[1;33mc\033[1;30ml\033[1;35me\033[1;36ma\033[1;37mn\033[0m"
 
@@ -44,7 +44,7 @@ fclean:
 	@rm -rf $(OBJS_DIR)
 	@rm -f $(NAME)
 	@rm -f $(MLX)
-	@make fclean -C libraries/libft
+	@make fclean -C libs/libft
 	@echo "\033[0;31mFiles killed💀❌\033[0m"
 
 re:	fclean all
