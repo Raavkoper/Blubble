@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/08/02 13:53:00 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/08/03 13:20:18 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define BLUBBLE_H
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <memory.h>
 
-# include "../libs/mlx/mlx.h"
+# include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
 
 typedef struct s_map {
@@ -25,19 +27,10 @@ typedef struct s_map {
 	struct s_map	*next;
 }				t_map;
 
-typedef struct s_image {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_image;
-
 typedef struct s_data {
-	void	*mlx;
-	void	*win;
-	t_map	*map;
-	t_image	image;
+	mlx_t		*mlx;
+	mlx_image_t	*g_img;
+	t_map		*map;
 }	t_data;
 
 void	read_map(t_data *data);

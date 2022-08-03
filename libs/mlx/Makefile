@@ -1,32 +1,76 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: W2Wizard <w2.wizzard@gmail.com>              +#+                      #
+#                                                    +#+                       #
+#    Created: 2022/02/26 21:32:49 by W2Wizard      #+#    #+#                  #
+#    Updated: 2022/07/05 14:55:30 by jobvan-d      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
 
+NAME		:= libmlx42.a
+LIB_DIR		:= lib
+SRC_DIR		:= src
+SHADER_DIR	:= shaders
+INCLUDE_DIR	:= include
 
+override HEADERS += -I $(INCLUDE_DIR)
 
-MODULE_SRC= mlx_image.swift mlx_window.swift mlx_init.swift
-MODULE_OBJ=$(MODULE_SRC:.swift=.swiftmodule)
+CFLAGS := -Wextra -Wall -Werror -Wunreachable-code -Wno-char-subscripts -Wno-sign-compare
+ifdef DEBUG
+	CFLAGS += -g
+else
+	CFLAGS	+= -Ofast -D NDEBUG
+endif
 
-SRC= interface.swift $(MODULE_SRC)
-OBJ=$(SRC:.swift=.o)
+# Recursive wildcard/find function, the subst is to guarantee unix file paths
+rwildcard = $(subst \,/,$(sort $(foreach d,$(wildcard $1/*),$(call rwildcard,$d,$2) $(wildcard $1/$2))))
 
-C_SRC= mlx_xpm.c mlx_png.c mlx_string_put.c
-C_OBJ=$(C_SRC:.c=.o)
+SHDR	:= $(call rwildcard,$(SHADER_DIR),default.*)
+SHDR	:= $(SHDR:$(SHADER_DIR)/default.%=$(SRC_DIR)/mlx_%_shader.c)
+LIB		:= $(call rwildcard,$(LIB_DIR),*.c)
+SRCS	:= $(call rwildcard,$(SRC_DIR),*.c)
+OBJS	:= $(sort $(patsubst %.c,%.o,$(SRCS) $(LIB) $(SHDR)))
+HDRS	:= $(call rwildcard,$(INCLUDE_DIR),*.h)
 
-NAME=libmlx.dylib
+ifeq ($(OS), Windows_NT)
+	ifdef WIN_UNIX
+		include Makefile_Unix.mk
+	else
+		include Makefile_WindowsNT.mk
+	endif
+else
+	UNAME_S := $(shell uname -s)
+	ifeq ($(UNAME_S), Linux)
+		include Makefile_Unix.mk
+	else ifeq ($(UNAME_S), Darwin)
+		# Default
+		DYLIB_EXISTS := test -e /usr/local/lib/libglfw.3.dylib || echo "false"
 
-INC=-I.
+		# Generic Homebrew path
+		ifneq ($(DYLIB_EXISTS), false)
+			BREW_GLFW_PREFIX := $(shell brew --prefix glfw)
+			DYLIB_EXISTS := test -e $(BREW_GLFW_PREFIX)/lib/libglfw.3.dylib || echo "false"
+			ifneq ($(DYLIB_EXISTS), false)
+				override HEADERS += -I $(BREW_GLFW_PREFIX)/include
+			endif
+		endif
 
-all: $(NAME)
+		include Makefile_Unix.mk
+	else
+$(error OS: $(OS) - Is not supported!)
+	endif
+endif
 
-$(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
-	@swiftc $(INC) -o $(NAME) -emit-library $(OBJ) $(C_OBJ) -lz
+#//= Make Rules =//#
+all: $(SHDR) $(NAME)
 
+# Run make as part of the recipe to allow for multi-threading to be used (-j)
+re: fclean
+	@$(MAKE) -e
 
-
-%.o: %.swift
-	@swiftc $(INC) -parse-as-library -c $< -o $@
-
-%.swiftmodule: %.swift
-	@swiftc $(INC) -parse-as-library -c $< -o $@ -emit-module -module-name $(patsubst %.swift,%,$<) -module-link-name $(patsubst %.swift,%,$<)
-
-clean:
-	@rm -f $(NAME) $(OBJ) $(MODULE_OBJ) $(C_OBJ) *.swiftdoc *~
-
+#//= Misc =//#
+.DEFAULT_GOAL := all
+.PHONY: all clean fclean re

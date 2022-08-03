@@ -2,12 +2,14 @@ NAME = cub3d
 
 HEADER = includes/blubble.h 
 
-CFLAGS = -Imlx -g --disable-asm-optimizations
+CFLAGS = -g -I include 
+
+LFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 CC = gcc 
 
 LIBFT = libs/libft/libft.a
-MLX = libs/mlx/libmlx.dylib
+MLX = libs/mlx/libmlx42.a
 
 OBJS_DIR = objs
 SRC_DIR = src
@@ -28,10 +30,10 @@ $(LIBFT):
 	$(MAKE) -C libs/libft
 
 $(MLX):
-	@$(MAKE) -C libs/mlx && test -e libmlx.dylib || ln -sf libs/mlx/libmlx.dylib libmlx.dylib
+	@$(MAKE) -C libs/mlx 
 
-$(NAME): $(MLX) $(LIBFT) $(OBJS) 
-	@$(CC) $(CFLAGS) $(INC) -I $^ -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@$(CC) $(CFLAGS) $(INC) -I $^ -o $(NAME) $(LFLAGS)
 	@echo "\033[92mFiles made 🤔\033[0m"
 
 clean:
