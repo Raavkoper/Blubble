@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/08/10 11:21:48 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/08/29 13:00:04 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
+
+# define mapWidth 24
+# define mapHeight 24
+# define screenWidth 640
+# define screenHeight 480
 
 typedef struct s_map {
 	char			content;
