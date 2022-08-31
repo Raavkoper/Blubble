@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:31:58 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/08/29 14:12:22 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/08/31 13:19:17 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,7 @@ int	main(int argc, char **argv)
 		read_map(&data, argv[1]);
 	else
 		printf("no given map input ofz\n");
-	double posX = 22;
-	double posY = 12;
-	double dirX	= -1;
-	double dirY = 0;
-	double planeX = 0;
-	double planeY = 0.66;
-	double time = 0;
-	double oldtime = 0;
-	int x = 0;
-	double cameraX;
-	double rayDirX;
-	double rayDirY;
+	raycasting();
 	// print_map(data.map);
 	data.mlx = mlx_init(screenWidth, screenHeight, "Blubble", true);
 	if (!data.mlx)
@@ -73,13 +62,6 @@ int	main(int argc, char **argv)
 	data.g_img = mlx_new_image(data.mlx, 128, 128);
 	memset(data.g_img->pixels, 255, data.g_img->width * data.g_img->height \
 	* sizeof(int));
-	while (x < mapWidth)
-	{
-		cameraX = 2 * x / mapWidth - 1;
-		rayDirX = dirX + planeX * cameraX;
-		rayDirY = dirX + planeX * cameraX;
-		x++;
-	}
 	mlx_loop_hook(data.mlx, &hook, data.mlx);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

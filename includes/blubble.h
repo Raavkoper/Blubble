@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/08/29 13:00:04 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/08/31 13:19:33 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	init_game(t_data *data);
 void	create_window(t_data *data);
 void	init_map(t_data *data, int fd);
 void	print_map(t_map *map);
+void	raycasting();
 #endif

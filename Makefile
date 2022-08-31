@@ -16,7 +16,7 @@ SRC_DIR = src
 
 INC := -I $(INCLUDE_DIR)
 
-SRCS = main.c init_game.c read_map.c
+SRCS = main.c init_game.c read_map.c raycasting.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
