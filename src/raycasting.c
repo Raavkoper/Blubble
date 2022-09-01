@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/01 11:20:20 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/01 13:34:55 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ void	raycasting()
 	int stepY;
 	int hit = 0;
 	int side;
+	int lineHeight;
+	int drawStart;
+	int drawEnd;
+	unsigned int color;
 	
 	while (x < mapWidth)
 	{
@@ -119,6 +123,40 @@ void	raycasting()
 			if (worldMap[mapX][mapY] > 0)
 				hit = 1;
 		}
-		
+		if (!side)
+			perpWallDist = sideDistX - deltaDistY;
+		else
+			perpWallDist = sideDistY - deltaDistY;
+		lineHeight = (int)(mapHeight / perpWallDist);
+		drawStart = -lineHeight / 2 + mapHeight / 2;
+		if (drawStart < 0)
+			drawStart = 0;
+		drawEnd = lineHeight / 2 + mapHeight / 2;
+		if (drawEnd >= mapHeight)
+			drawEnd = mapHeight - 1;
+		if (worldMap[mapX][mapY] == 1)
+		{
+			color = 0xFF0000;
+			if (side)
+				color = 0xAC1111;
+		}
+		if (worldMap[mapX][mapY] == 2)
+		{
+			color = 0xFFF600;
+			if (side)
+				color = 0xCBC706;
+		}
+		if (worldMap[mapX][mapY] == 3)
+		{
+			color = 0x0007FF;
+			if (side)
+				color = 0x0B86AD;
+		}
+		if (worldMap[mapX][mapY] == 4)
+		{
+			color = 0x03FF00;
+			if (side)
+				color = 0x1BA01A;
+		}
 	}
 }
