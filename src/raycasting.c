@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/01 13:34:55 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/02 11:50:52 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void	raycasting()
+void	raycasting(t_data *data)
 {
 	double posX = 22;
 	double posY = 12;
@@ -158,5 +158,17 @@ void	raycasting()
 			if (side)
 				color = 0x1BA01A;
 		}
+		draw_walls(data, x, drawStart, drawEnd);
+	}
+}
+
+void draw_walls(t_data *data, int x, int drawStart, int drawEnd)
+{
+	int	y;
+	
+	y = drawStart;
+	while (y < drawEnd && y < max)
+	{
+		
 	}
 }
