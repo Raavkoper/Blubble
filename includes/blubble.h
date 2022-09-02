@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/02 11:37:24 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/02 13:48:06 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	init_map(t_data *data, int fd);
 void	print_map(t_map *map);
 void	raycasting(t_data *data);
 void	draw_walls(t_data *data, int x, int drawStart, int drawEnd);
+void	draw_floor(t_data *data);
+void	draw_ceiling(t_data *data);
 #endif

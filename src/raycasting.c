@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/02 11:50:52 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/02 13:47:39 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,12 +162,55 @@ void	raycasting(t_data *data)
 	}
 }
 
+int	create_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	draw_ceiling(t_data *data)
+{
+	int			x;
+	int			y;
+	uint32_t	color = create_rgba(78, 179, 242, 255);
+	
+	y = 0;
+	while (y < screenHeight / 2)
+	{
+		x = 0;
+		while (x < screenWidth)
+		{
+			mlx_put_pixel(data->g_img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_floor(t_data *data)
+{
+	int			x;
+	int			y;
+	uint32_t	color = create_rgba(3, 90, 252, 255);
+	
+	y = screenHeight / 2;
+	while (y < screenHeight)
+	{
+		x = 0;
+		while (x < screenWidth)
+		{
+			mlx_put_pixel(data->g_img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 void draw_walls(t_data *data, int x, int drawStart, int drawEnd)
 {
 	int	y;
 	
 	y = drawStart;
-	while (y < drawEnd && y < max)
+	while (y < drawEnd)
 	{
 		
 	}
