@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/02 13:47:39 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/02 14:35:11 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void	raycasting(t_data *data)
 				color = 0x1BA01A;
 		}
 		draw_walls(data, x, drawStart, drawEnd);
+		x++;
 	}
 }
 
@@ -207,11 +208,16 @@ void	draw_floor(t_data *data)
 
 void draw_walls(t_data *data, int x, int drawStart, int drawEnd)
 {
-	int	y;
+	int y;
 	
 	y = drawStart;
-	while (y < drawEnd)
+	printf("%d\n%d\n", y, drawEnd);
+	while (y != drawEnd + 10)
 	{
-		
+		mlx_put_pixel(data->g_img, x, y, 255);
+		if (y > drawEnd)
+			y--;
+		else
+			y++;
 	}
 }

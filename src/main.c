@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:31:58 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/02 13:47:57 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/02 14:10:36 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	// * sizeof(int));
 	draw_floor(&data);
 	draw_ceiling(&data);
+	raycasting(&data);
 	mlx_image_to_window(data.mlx, data.g_img, 0, 0);
 	mlx_loop_hook(data.mlx, &hook, data.mlx);
 	mlx_loop(data.mlx);
