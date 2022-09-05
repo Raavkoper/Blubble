@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/05 11:19:49 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/05 13:55:48 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,15 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+int	create_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
 void	raycasting(t_data *data)
 {
-	double posX = 22;
-	double posY = 12;
+	double posX = 14;
+	double posY = 8;
 	double dirX	= -1;
 	double dirY = 0;
 	double planeX = 0;
@@ -63,7 +68,7 @@ void	raycasting(t_data *data)
 	double perpWallDist;
 	int stepX;
 	int stepY;
-	int hit = 0;
+	int hit;
 	int side;
 	int lineHeight;
 	int drawStart;
@@ -76,14 +81,16 @@ void	raycasting(t_data *data)
 	double texPos;
 	double step;
 	int y;
+	hit = 0;
 	
-	while (x < screenWidth)
+	while (x < data->mlx->width)
 	{
 		cameraX = 2 * x / screenWidth - 1;
 		rayDirX = dirX + planeX * cameraX;
-		rayDirY = dirX + planeX * cameraX;
+		rayDirY = dirY + planeY * cameraX;
 		mapX = (int)posX;
 		mapY = (int)posY;
+		hit = 0;
 		if (!rayDirX)
 			rayDirX = 1e30;
 		else
@@ -92,7 +99,6 @@ void	raycasting(t_data *data)
 			rayDirY = 1e30;
 		else
 			deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-		x++;
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -131,40 +137,45 @@ void	raycasting(t_data *data)
 				hit = 1;
 		}
 		if (!side)
-			perpWallDist = sideDistX - deltaDistY;
+			perpWallDist = sideDistX - deltaDistX;
 		else
 			perpWallDist = sideDistY - deltaDistY;
-		lineHeight = (int)(screenHeight / perpWallDist);
-		drawStart = -lineHeight / 2 + screenHeight / 2;
+		lineHeight = (int)(data->mlx->height / perpWallDist);
+		drawStart = -lineHeight / 2 + data->mlx->height / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		drawEnd = lineHeight / 2 + screenHeight / 2;
-		if (drawEnd >= screenHeight)
-			drawEnd = screenHeight - 1;
+		drawEnd = lineHeight / 2 + data->mlx->height / 2;
+		if (drawEnd >= data->mlx->height)
+			drawEnd = data->mlx->height - 1;
 		// texNum = worldMap[mapX, mapY];
+		// printf("lineheight%d\n", lineHeight);
 		if (worldMap[mapX][mapY] == 1)
 		{
-			color = 0xFF0000;
+			color = create_rgba(6, 57, 112, 255);
+			printf("hoi\n");
 			if (side)
-				color = 0xAC1111;
+				color = create_rgba(7, 68, 125, 255);
 		}
 		if (worldMap[mapX][mapY] == 2)
 		{
-			color = 0xFFF600;
+			color = create_rgba(227, 116, 60, 255);
+			printf("hoi\n");
 			if (side)
-				color = 0xCBC706;
+				color = create_rgba(209, 100, 43, 255);
 		}
 		if (worldMap[mapX][mapY] == 3)
 		{
-			color = 0x0007FF;
+			color = create_rgba(204, 206, 204, 255);
+			printf("hoi\n");
 			if (side)
-				color = 0x0B86AD;
+				color = create_rgba(78, 179, 242, 255);
 		}
 		if (worldMap[mapX][mapY] == 4)
 		{
-			color = 0x03FF00;
+			color = create_rgba(198, 132, 96, 255);
+			printf("hoi\n");
 			if (side)
-				color = 0x1BA01A;
+				color = create_rgba(155, 51, 25, 255);
 		}
 		if (!side)
 			wallX = posY + perpWallDist * rayDirY;
@@ -176,10 +187,9 @@ void	raycasting(t_data *data)
 		if (side == 1 && rayDirY < 0)
 			texX = texWidth - texX - 1;
 		step = 1.0 * texHeight / lineHeight;
-		texPos = (drawStart - screenHeight / 2 + lineHeight / 2) * step;
+		texPos = (drawStart - data->mlx->height / 2 + lineHeight / 2) * step;
 		y = drawStart;
-		printf("%d\n%d", drawStart, drawEnd);
-		while (y < drawEnd)
+		while (y < drawEnd && y < data->mlx->height)
 		{
 			texY = (int)texPos & (texHeight - 1);
 			texPos += step;
@@ -191,10 +201,6 @@ void	raycasting(t_data *data)
 	}
 }
 
-int	create_rgba(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
 
 void	draw_ceiling(t_data *data)
 {
