@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/02 13:48:06 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/05 10:55:20 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 # define mapWidth 24
 # define mapHeight 24
+# define texWidth 64
+# define texHeight 64
 # define screenWidth 640
 # define screenHeight 480
 

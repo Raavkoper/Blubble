@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/02 14:35:11 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/05 11:19:49 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,17 @@ void	raycasting(t_data *data)
 	int drawStart;
 	int drawEnd;
 	unsigned int color;
+	int texNum;
+	double wallX;
+	int texX;
+	int texY;
+	double texPos;
+	double step;
+	int y;
 	
-	while (x < mapWidth)
+	while (x < screenWidth)
 	{
-		cameraX = 2 * x / mapWidth - 1;
+		cameraX = 2 * x / screenWidth - 1;
 		rayDirX = dirX + planeX * cameraX;
 		rayDirY = dirX + planeX * cameraX;
 		mapX = (int)posX;
@@ -127,13 +134,14 @@ void	raycasting(t_data *data)
 			perpWallDist = sideDistX - deltaDistY;
 		else
 			perpWallDist = sideDistY - deltaDistY;
-		lineHeight = (int)(mapHeight / perpWallDist);
-		drawStart = -lineHeight / 2 + mapHeight / 2;
+		lineHeight = (int)(screenHeight / perpWallDist);
+		drawStart = -lineHeight / 2 + screenHeight / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		drawEnd = lineHeight / 2 + mapHeight / 2;
-		if (drawEnd >= mapHeight)
-			drawEnd = mapHeight - 1;
+		drawEnd = lineHeight / 2 + screenHeight / 2;
+		if (drawEnd >= screenHeight)
+			drawEnd = screenHeight - 1;
+		// texNum = worldMap[mapX, mapY];
 		if (worldMap[mapX][mapY] == 1)
 		{
 			color = 0xFF0000;
@@ -158,7 +166,27 @@ void	raycasting(t_data *data)
 			if (side)
 				color = 0x1BA01A;
 		}
-		draw_walls(data, x, drawStart, drawEnd);
+		if (!side)
+			wallX = posY + perpWallDist * rayDirY;
+		else
+			wallX = posX + perpWallDist * rayDirX;
+		texX = (int)wallX * (double)texWidth;
+		if (!side && rayDirX > 0)
+			texX = texWidth - texX - 1;
+		if (side == 1 && rayDirY < 0)
+			texX = texWidth - texX - 1;
+		step = 1.0 * texHeight / lineHeight;
+		texPos = (drawStart - screenHeight / 2 + lineHeight / 2) * step;
+		y = drawStart;
+		printf("%d\n%d", drawStart, drawEnd);
+		while (y < drawEnd)
+		{
+			texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+			mlx_put_pixel(data->g_img, x, y, color);
+			y++;
+		}
+		// draw_walls(data, x, drawStart, drawEnd);
 		x++;
 	}
 }
@@ -208,16 +236,12 @@ void	draw_floor(t_data *data)
 
 void draw_walls(t_data *data, int x, int drawStart, int drawEnd)
 {
-	int y;
-	
-	y = drawStart;
-	printf("%d\n%d\n", y, drawEnd);
-	while (y != drawEnd + 10)
+	while (drawStart != drawEnd)
 	{
-		mlx_put_pixel(data->g_img, x, y, 255);
-		if (y > drawEnd)
-			y--;
+		mlx_put_pixel(data->g_img, x, drawStart, 255);
+		if (drawStart > drawEnd)
+			drawStart--;
 		else
-			y++;
+			drawStart++;
 	}
 }
