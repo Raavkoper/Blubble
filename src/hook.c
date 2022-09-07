@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 13:17:44 by rkoper            #+#    #+#             */
-/*   Updated: 2022/09/07 14:03:15 by svan-ass         ###   ########.fr       */
+/*   Created: 2022/08/02 11:02:41 by rkoper            #+#    #+#             */
+/*   Updated: 2022/09/07 13:54:48 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/blubble.h"
 
-void	raycasting(t_data *data)
-{
-	int	x;
-	int	color;
+void	hook(void *param)
+{	
+	t_data	*data;
 
-	x = 0;
-	init_camera(data);
-	while (x < data->mlx->width)
-	{
-		init_raycasting(data, x);
-		calculate_step_direction(data);
-		check_for_wall_hit(data);
-		calculate_perpwalldist(data);
-		color = wall_colors(data);
-		calculate_textures(data);
-		draw_walls(data, x, color);
-		x++;
-	}
+	data = (t_data *)param;
+	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
+		mlx_close_window(param);
 }
