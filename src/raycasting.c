@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/05 13:55:48 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/07 11:56:28 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	create_rgba(int r, int g, int b, int a)
 
 void	raycasting(t_data *data)
 {
-	double posX = 14;
-	double posY = 8;
+	double posX = 1;
+	double posY = 0;
 	double dirX	= -1;
 	double dirY = 0;
 	double planeX = 0;
@@ -148,32 +148,27 @@ void	raycasting(t_data *data)
 		if (drawEnd >= data->mlx->height)
 			drawEnd = data->mlx->height - 1;
 		// texNum = worldMap[mapX, mapY];
-		// printf("lineheight%d\n", lineHeight);
 		if (worldMap[mapX][mapY] == 1)
 		{
 			color = create_rgba(6, 57, 112, 255);
-			printf("hoi\n");
 			if (side)
 				color = create_rgba(7, 68, 125, 255);
 		}
 		if (worldMap[mapX][mapY] == 2)
 		{
 			color = create_rgba(227, 116, 60, 255);
-			printf("hoi\n");
 			if (side)
 				color = create_rgba(209, 100, 43, 255);
 		}
 		if (worldMap[mapX][mapY] == 3)
 		{
 			color = create_rgba(204, 206, 204, 255);
-			printf("hoi\n");
 			if (side)
 				color = create_rgba(78, 179, 242, 255);
 		}
 		if (worldMap[mapX][mapY] == 4)
 		{
 			color = create_rgba(198, 132, 96, 255);
-			printf("hoi\n");
 			if (side)
 				color = create_rgba(155, 51, 25, 255);
 		}
@@ -196,20 +191,23 @@ void	raycasting(t_data *data)
 			mlx_put_pixel(data->g_img, x, y, color);
 			y++;
 		}
-		// draw_walls(data, x, drawStart, drawEnd);
 		x++;
 	}
 }
 
 
-void	draw_ceiling(t_data *data)
+void	draw_f_c(t_data *data, uint32_t	color, char c)
 {
 	int			x;
 	int			y;
-	uint32_t	color = create_rgba(78, 179, 242, 255);
+	int			end;
 	
-	y = 0;
-	while (y < screenHeight / 2)
+	if (c == 'f')
+		y = 0;
+	else
+		y = screenHeight / 2;
+	end = y + (screenHeight / 2);
+	while (y < end)
 	{
 		x = 0;
 		while (x < screenWidth)
@@ -218,36 +216,5 @@ void	draw_ceiling(t_data *data)
 			x++;
 		}
 		y++;
-	}
-}
-
-void	draw_floor(t_data *data)
-{
-	int			x;
-	int			y;
-	uint32_t	color = create_rgba(3, 90, 252, 255);
-	
-	y = screenHeight / 2;
-	while (y < screenHeight)
-	{
-		x = 0;
-		while (x < screenWidth)
-		{
-			mlx_put_pixel(data->g_img, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
-void draw_walls(t_data *data, int x, int drawStart, int drawEnd)
-{
-	while (drawStart != drawEnd)
-	{
-		mlx_put_pixel(data->g_img, x, drawStart, 255);
-		if (drawStart > drawEnd)
-			drawStart--;
-		else
-			drawStart++;
 	}
 }

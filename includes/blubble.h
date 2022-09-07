@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/05 10:55:20 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/07 14:11:15 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,28 @@
 # define screenHeight 480
 
 typedef struct s_map {
-	char			content;
-	int				x;
-	int				y;
-	struct s_map	*next;
+	char	**map;
+	int		width;
+	int 	height;
 }				t_map;
 
 typedef struct s_data {
+	char		*file;
 	mlx_t		*mlx;
 	mlx_image_t	*g_img;
-	t_map		*map;
+	t_map		map;
 }	t_data;
 
-void	read_map(t_data *data, char *file);
+/* map parse functions */
+void	read_map(t_data *data);
+void	init_map(t_data *data, int fd);
+void	set_textures(t_data *data, int fd);
+void	color_map(t_data *data, int fd);
+void	copy_map(t_map *map, int fd);
+
 void	init_game(t_data *data);
 void	create_window(t_data *data);
-void	init_map(t_data *data, int fd);
-void	print_map(t_map *map);
 void	raycasting(t_data *data);
-void	draw_walls(t_data *data, int x, int drawStart, int drawEnd);
-void	draw_floor(t_data *data);
-void	draw_ceiling(t_data *data);
+void	draw_f_c(t_data *data, uint32_t	color, char c);
+int		create_rgba(int r, int g, int b, int a);
 #endif
