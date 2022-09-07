@@ -2,7 +2,7 @@ NAME = cub3d
 
 HEADER = includes/blubble.h 
 
-CFLAGS = -g -I include 
+CFLAGS = -g -I include -Wall -Werror -Wextra
 
 LFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
@@ -16,7 +16,11 @@ SRC_DIR = src
 
 INC := -I $(INCLUDE_DIR)
 
-SRCS = main.c init_game.c read_map.c raycasting.c
+SRCS =	main.c \
+		init_game.c \
+		read_map.c \
+		raycasting.c \
+		key_input.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
@@ -34,7 +38,7 @@ $(MLX):
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@$(CC) $(CFLAGS) $(INC) -I $^ -o $(NAME) $(LFLAGS)
-	@echo "\033[92mFiles made 🤔\033[0m"
+	@echo "\033[92mFiles made\033[0m"
 
 clean:
 	@rm -rf $(OBJS_DIR)
@@ -47,7 +51,7 @@ fclean:
 	@rm -f $(NAME)
 	@rm -f $(MLX)
 	@make fclean -C libs/libft
-	@echo "\033[0;31mFiles killed💀❌\033[0m"
+	@echo "\033[0;31mFiles cleaned\033[0m"
 
 re:	fclean all
 

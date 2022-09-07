@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   blubble.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/05 10:55:20 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/09/06 12:07:26 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <memory.h>
 # include <fcntl.h>
 # include <math.h>
+# include <time.h>
 
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
@@ -29,6 +30,20 @@
 # define screenWidth 640
 # define screenHeight 480
 
+typedef struct s_player {
+	double	posx;
+	double	posy;
+	double	movespeed;
+}				t_player;
+
+typedef struct s_raycasting {
+	double	dirx;
+	double	diry;
+	double	rotspeed;
+	double	planex;
+	double	planey;
+}				t_raycasting;
+
 typedef struct s_map {
 	char			content;
 	int				x;
@@ -37,10 +52,12 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_data {
-	mlx_t		*mlx;
-	mlx_image_t	*g_img;
-	t_map		*map;
-}	t_data;
+	mlx_t			*mlx;
+	mlx_image_t		*g_img;
+	t_map			*map;
+	t_raycasting	raycasting;
+	t_player		player;
+}				t_data;
 
 void	read_map(t_data *data, char *file);
 void	init_game(t_data *data);
@@ -51,4 +68,7 @@ void	raycasting(t_data *data);
 void	draw_walls(t_data *data, int x, int drawStart, int drawEnd);
 void	draw_floor(t_data *data);
 void	draw_ceiling(t_data *data);
+
+void	key_input(t_data *data);
+
 #endif

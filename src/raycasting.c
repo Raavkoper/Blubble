@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/05 13:55:48 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/31 13:17:44 by rkoper            #+#    #+#             */
+/*   Updated: 2022/09/06 12:05:50 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,6 @@ int	create_rgba(int r, int g, int b, int a)
 
 void	raycasting(t_data *data)
 {
-	double posX = 14;
-	double posY = 8;
-	double dirX	= -1;
-	double dirY = 0;
-	double planeX = 0;
-	double planeY = 0.66;
-	double time = 0;
-	double oldtime = 0;
 	int x = 0;
 	double cameraX;
 	double rayDirX;
@@ -74,22 +66,21 @@ void	raycasting(t_data *data)
 	int drawStart;
 	int drawEnd;
 	unsigned int color;
-	int texNum;
+	// int texNum;
 	double wallX;
 	int texX;
 	int texY;
 	double texPos;
 	double step;
 	int y;
-	hit = 0;
-	
+
 	while (x < data->mlx->width)
 	{
 		cameraX = 2 * x / screenWidth - 1;
-		rayDirX = dirX + planeX * cameraX;
-		rayDirY = dirY + planeY * cameraX;
-		mapX = (int)posX;
-		mapY = (int)posY;
+		rayDirX = data->raycasting.dirx + data->raycasting.planex * cameraX;
+		rayDirY = data->raycasting.diry + data->raycasting.planey * cameraX;
+		mapX = (int)data->player.posx;
+		mapY = (int)data->player.posy;
 		hit = 0;
 		if (!rayDirX)
 			rayDirX = 1e30;
@@ -102,22 +93,22 @@ void	raycasting(t_data *data)
 		if (rayDirX < 0)
 		{
 			stepX = -1;
-			sideDistX = (posX - mapX) * deltaDistX;
+			sideDistX = (data->player.posx - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+			sideDistX = (mapX + 1.0 - data->player.posx) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
-			sideDistY = (posY - mapY) * deltaDistY;
+			sideDistY = (data->player.posy - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+			sideDistY = (mapY + 1.0 - data->player.posy) * deltaDistY;
 		}
 		while (!hit)
 		{
@@ -152,35 +143,35 @@ void	raycasting(t_data *data)
 		if (worldMap[mapX][mapY] == 1)
 		{
 			color = create_rgba(6, 57, 112, 255);
-			printf("hoi\n");
+			// printf("hoi\n");
 			if (side)
 				color = create_rgba(7, 68, 125, 255);
 		}
 		if (worldMap[mapX][mapY] == 2)
 		{
 			color = create_rgba(227, 116, 60, 255);
-			printf("hoi\n");
+			// printf("hoi\n");
 			if (side)
 				color = create_rgba(209, 100, 43, 255);
 		}
 		if (worldMap[mapX][mapY] == 3)
 		{
 			color = create_rgba(204, 206, 204, 255);
-			printf("hoi\n");
+			// printf("hoi\n");
 			if (side)
 				color = create_rgba(78, 179, 242, 255);
 		}
 		if (worldMap[mapX][mapY] == 4)
 		{
 			color = create_rgba(198, 132, 96, 255);
-			printf("hoi\n");
+			// printf("hoi\n");
 			if (side)
 				color = create_rgba(155, 51, 25, 255);
 		}
 		if (!side)
-			wallX = posY + perpWallDist * rayDirY;
+			wallX = data->player.posy + perpWallDist * rayDirY;
 		else
-			wallX = posX + perpWallDist * rayDirX;
+			wallX = data->player.posx + perpWallDist * rayDirX;
 		texX = (int)wallX * (double)texWidth;
 		if (!side && rayDirX > 0)
 			texX = texWidth - texX - 1;
@@ -196,11 +187,9 @@ void	raycasting(t_data *data)
 			mlx_put_pixel(data->g_img, x, y, color);
 			y++;
 		}
-		// draw_walls(data, x, drawStart, drawEnd);
 		x++;
 	}
 }
-
 
 void	draw_ceiling(t_data *data)
 {
@@ -240,14 +229,3 @@ void	draw_floor(t_data *data)
 	}
 }
 
-void draw_walls(t_data *data, int x, int drawStart, int drawEnd)
-{
-	while (drawStart != drawEnd)
-	{
-		mlx_put_pixel(data->g_img, x, drawStart, 255);
-		if (drawStart > drawEnd)
-			drawStart--;
-		else
-			drawStart++;
-	}
-}
