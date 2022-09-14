@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/14 10:51:26 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/14 11:12:24 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	copy_map(t_map *map, int fd)
 		printf("%s", map->map[i]);
 		i++;
 	}
+	printf("\n");
 }
 
 void	allocate_map(t_map *map, char *file)
@@ -91,7 +92,7 @@ void	allocate_map(t_map *map, char *file)
 	fd = open(file, O_RDONLY);
 	map->map = ft_calloc(map->height + 1, sizeof(char *));
 	i = 0;
-	while (i <= map->height + 3)
+	while (i <= map->height)
 	{
 		map->map[i] = ft_calloc(map->width + 1, sizeof(char));
 		i++;
