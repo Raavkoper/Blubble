@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/07 14:45:00 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/07 14:50:46 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	copy_map(t_map *map, int fd)
 		i++;
 	}
 	i = 0;
-	while (i < 14)
+	while (i < 15)
 	{
 		printf("%s", map->map[i]);
 		i++;
