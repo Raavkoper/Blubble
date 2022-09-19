@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/07 14:37:07 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_data.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/09/07 10:30:47 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/19 16:11:39 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_camera(t_data *data)
 
 void	init_raycasting(t_data *data, int x)
 {
-	data->cam.camerax = 2 * x / screenWidth - 1;
+	data->cam.camerax = 2 * x / (double)screenWidth - 1;
 	data->ray.raydirx = data->cam.dirx + data->cam.planex * data->cam.camerax;
 	data->ray.raydiry = data->cam.diry + data->cam.planey * data->cam.camerax;
 	data->ray.mapx = (int)data->cam.posx;

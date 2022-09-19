@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/19 12:46:22 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/19 16:14:10 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	raycasting(t_data *data)
 	int	color;
 
 	x = 0;
-	init_camera(data);
 	while (x < data->mlx->width)
 	{
 		init_raycasting(data, x);

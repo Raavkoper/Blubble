@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/14 11:12:24 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/19 15:22:12 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	read_map(t_data *data)
 	int fd;
 
 	fd = open(data->file, O_RDONLY);
+	
 	init_map(data, fd);
 }
 
@@ -74,13 +75,6 @@ void	copy_map(t_map *map, int fd)
 		line = get_next_line(fd);
 		i++;
 	}
-	i = 0;
-	while (i < 15)
-	{
-		printf("%s", map->map[i]);
-		i++;
-	}
-	printf("\n");
 }
 
 void	allocate_map(t_map *map, char *file)
@@ -145,7 +139,7 @@ void	color_map(t_data *data, int fd)
 	while (i < 2)
 	{
 		temp = line;
-		while (!ft_isdigit(*line))
+		while (*line && !ft_isdigit(*line))
 			line++;
 		r = ft_atoi(line);
 		while (ft_isdigit(*line))
@@ -159,12 +153,35 @@ void	color_map(t_data *data, int fd)
 			line++;
 		b = ft_atoi(line);
 		if (!i)
-			draw_f_c(data, create_rgba(r, g, b, 255), 'c');
+			data->c_color =  create_rgba(r, g, b, 255);
 		else
-			draw_f_c(data, create_rgba(r, g, b, 255), 'f');
+			data->f_color = create_rgba(r, g, b, 255);
 		i++;
 		line = get_next_line(fd);
 		free(temp);
+	}
+}
+
+void	draw_f_c(t_data *data, uint32_t	color, char c)
+{
+	int			x;
+	int			y;
+	int			end;
+	
+	if (c == 'f')
+		y = 0;
+	else
+		y = screenHeight / 2;
+	end = y + (screenHeight / 2);
+	while (y < end)
+	{
+		x = 0;
+		while (x < screenWidth)
+		{
+			mlx_put_pixel(data->g_img, x, y, color);
+			x++;
+		}
+		y++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/19 12:53:25 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/19 15:20:56 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_data {
 	t_raycasting	ray;
 	t_player		player;
 	t_camera		cam;
+	int				c_color;
+	int				f_color;
 }				t_data;
 
 //main
@@ -95,7 +97,7 @@ void	init_raycasting(t_data *data, int x);
 void	init_camera(t_data *data);
 
 //raycasting
-void	hook(void *param);
+void	start(void *param);
 void	raycasting(t_data *data);
 void	calculate_step_direction(t_data *data);
 void	check_for_wall_hit(t_data *data);
@@ -106,6 +108,7 @@ int		wall_colors(t_data *data);
 
 //keys
 void	key_input(t_data *data);
+void	movement(t_data *data);
 
 /* map parse functions */
 void	read_map(t_data *data);

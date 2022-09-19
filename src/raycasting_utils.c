@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting_utils.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 12:03:24 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/07 13:30:27 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting_utils.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/09/07 12:03:24 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/19 15:57:58 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	calculate_textures(t_data *data)
 		data->ray.perpwalldist * data->ray.raydirx;
 	data->ray.texx = (int)data->ray.wallx * (double)texWidth;
 	if (data->ray.side == 0 && data->ray.raydirx > 0)
-		data->ray.texx = texWidth - data->ray.texx - 1;
+		data->ray.texx = texWidth - data->ray.texx - 1;	
 	if (data->ray.side == 1 && data->ray.raydiry < 0)
 		data->ray.texx = texWidth - data->ray.texx - 1;
 	data->ray.step = 1.0 * texHeight / data->ray.lineheight;
@@ -99,10 +99,11 @@ void	draw_walls(t_data *data, int x, int color)
 	int	y;
 
 	y = data->ray.drawstart;
+	printf("%d, %d\n", data->ray.drawstart, data->ray.drawend);
 	while (y < data->ray.drawend && y < data->mlx->height)
 	{
-		data->ray.texy = (int)data->ray.texpos & (texHeight - 1);
-		data->ray.texpos += data->ray.step;
+		// data->ray.texy = (int)data->ray.texpos & (texHeight - 1);
+		// data->ray.texpos += data->ray.step;
 		mlx_put_pixel(data->g_img, x, y, color);
 		y++;
 	}
