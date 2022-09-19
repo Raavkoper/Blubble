@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:31:58 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/19 12:49:57 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/19 12:51:58 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	if (!data.mlx)
 		exit(EXIT_FAILURE);
 	data.g_img = mlx_new_image(data.mlx, screenWidth, screenHeight);
+	data.file = argv[1];
 	read_map(&data);
 	raycasting(&data);
 	key_input(&data);

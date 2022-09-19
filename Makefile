@@ -2,7 +2,7 @@ NAME = cub3d
 
 HEADER = includes/blubble.h 
 
-CFLAGS = -g -I include -Wall -Werror -Wextra
+CFLAGS = -g -I include 
 
 LFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 

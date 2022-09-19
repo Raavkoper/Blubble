@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/19 12:48:50 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/19 12:53:25 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_data {
+	char			*file;
 	mlx_t			*mlx;
 	mlx_image_t		*g_img;
-	t_map			*map;
+	t_map			map;
 	t_raycasting	ray;
 	t_player		player;
 	t_camera		cam;
@@ -101,7 +102,6 @@ void	check_for_wall_hit(t_data *data);
 void	calculate_perpwalldist(t_data *data);
 void	calculate_textures(t_data *data);
 void	draw_walls(t_data *data, int x, int color);
-
 int		wall_colors(t_data *data);
 
 //keys
