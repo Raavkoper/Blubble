@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/07 14:23:02 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/19 12:48:50 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ typedef struct s_raycasting {
 }				t_raycasting;
 
 typedef struct s_map {
-	char			content;
-	int				x;
-	int				y;
-	struct s_map	*next;
+	char	**map;
+	int		width;
+	int 	height;
 }				t_map;
 
 typedef struct s_data {
@@ -87,11 +86,8 @@ typedef struct s_data {
 
 //main
 int		worldMap[mapWidth][mapHeight];
-void	read_map(t_data *data, char *file);
 void	init_game(t_data *data);
 void	create_window(t_data *data);
-void	init_map(t_data *data, int fd);
-void	print_map(t_map *map);
 
 //init data
 void	init_raycasting(t_data *data, int x);
@@ -111,4 +107,13 @@ int		wall_colors(t_data *data);
 //keys
 void	key_input(t_data *data);
 
+/* map parse functions */
+void	read_map(t_data *data);
+void	init_map(t_data *data, int fd);
+void	set_textures(t_data *data, int fd);
+void	color_map(t_data *data, int fd);
+void	copy_map(t_map *map, int fd);
+
+void	draw_f_c(t_data *data, uint32_t	color, char c);
+int		create_rgba(int r, int g, int b, int a);
 #endif

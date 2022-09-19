@@ -1,6 +1,10 @@
 {
 	"files.associations": {
+<<<<<<< HEAD
 		"__locale": "c",
 		"blubble.h": "c"
+=======
+		"libft.h": "c"
+>>>>>>> rkoper
 	}
 }

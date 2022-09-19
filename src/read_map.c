@@ -6,73 +6,171 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/08/29 11:15:53 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/14 11:12:24 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/blubble.h"
 
-void	read_map(t_data *data, char *file)
+void	read_map(t_data *data)
 {
 	int fd;
 
-	fd = open(file, O_RDONLY);
+	fd = open(data->file, O_RDONLY);
 	init_map(data, fd);
 }
 
-void	append_map(char content, int x, int y, t_data *data)
+void	set_textures(t_data *data, int fd)
 {
-	t_map	*new_node;
-	t_map	*last;
-
-	last = data->map;
-	new_node = malloc(sizeof(t_map));
-	if (!new_node)
-		exit(EXIT_FAILURE);
-	new_node->x = x;
-	new_node->y = y;
-	new_node->content = content;
-	new_node->next = NULL;
-	if (!data->map)
+	int i;
+	char *line;
+	char *temp;
+	
+	i = 0;
+	line = get_next_line(fd);
+	while (i < 4)
 	{
-		data->map = new_node;
-		return ;
+		temp = line;
+		line = get_next_line(fd);
+		free(temp);
+		i++;
 	}
-	while (last->next)
-		last = last->next;
-	last->next = new_node;
+}
+
+int	map_strlen(char const *str)
+{
+	int	i;
+	int ret;
+
+	i = 0;
+	ret = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\t')
+			ret += 3;
+		i++;
+		ret++;
+	}
+	return (ret);
+}
+
+void	copy_map(t_map *map, int fd)
+{
+	char *line;
+	int i;
+	int j;
+	
+	line = get_next_line(fd);
+	i = 0;
+	while (line)
+	{
+		j = 0;
+		while (line[j])
+		{
+			map->map[i][j] = line[j];
+			j++;
+		}
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	i = 0;
+	while (i < 15)
+	{
+		printf("%s", map->map[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+void	allocate_map(t_map *map, char *file)
+{
+	int i;
+	int fd;
+	char *line;
+	
+	fd = open(file, O_RDONLY);
+	map->map = ft_calloc(map->height + 1, sizeof(char *));
+	i = 0;
+	while (i <= map->height)
+	{
+		map->map[i] = ft_calloc(map->width + 1, sizeof(char));
+		i++;
+	}
+	i = 0;
+	while (i < 8)
+	{
+		line = get_next_line(fd);
+		free(line);
+		i++;
+	}
+	copy_map(map, fd);
+}
+
+void	parse_map(t_map *map, int fd, char *file)
+{
+	char *line;
+	int height;
+	int width;
+	int max;
+
+	line = get_next_line(fd);
+	height = 0;
+	max = 0;
+	while (line)
+	{
+		width = map_strlen(line);
+		if (width > max)
+			max = width;
+		free(line);
+		line = get_next_line(fd);
+		height++;
+	}
+	map->width = max;
+	map->height = height;
+	allocate_map(map, file);
+}
+
+void	color_map(t_data *data, int fd)
+{
+	char *line;
+	int i;
+	char *temp;
+	int r = 0;
+	int g = 0;
+	int b = 0;
+	
+	line = get_next_line(fd);
+	i = 0;
+	while (i < 2)
+	{
+		temp = line;
+		while (!ft_isdigit(*line))
+			line++;
+		r = ft_atoi(line);
+		while (ft_isdigit(*line))
+			line++;
+		while (!ft_isdigit(*line))
+			line++;
+		g = ft_atoi(line);
+		while (ft_isdigit(*line))
+			line++;
+		while (!ft_isdigit(*line))
+			line++;
+		b = ft_atoi(line);
+		if (!i)
+			draw_f_c(data, create_rgba(r, g, b, 255), 'c');
+		else
+			draw_f_c(data, create_rgba(r, g, b, 255), 'f');
+		i++;
+		line = get_next_line(fd);
+		free(temp);
+	}
 }
 
 void	init_map(t_data *data, int fd)
 {
-	char *line;
-	char *temp;
-	int x;
-	int y;
-
-	y = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		x = 0;
-		temp = line;
-		while (*line && *line != '\n')
-		{
-			append_map(*line, x, y, data);
-			line++;
-			x += 1;
-		}
-		free(temp);
-		line = get_next_line(fd);
-		y += 1;
-	}
-}
-
-void	print_map(t_map *map)
-{
-	while (map)
-	{
-		printf("x = %d, y = %d, content = %c\n", map->x, map->y, map->content);
-		map = map->next;
-	}
+	set_textures(data, fd);
+	color_map(data, fd);
+	parse_map(&data->map, fd, data->file);
 }
