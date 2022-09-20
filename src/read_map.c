@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/20 11:27:54 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/20 13:33:03 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	set_textures(t_data *data, int fd)
 		free(temp);
 		i++;
 	}
+	free(line);
 }
 
 int	map_strlen(char const *str)
@@ -169,6 +170,7 @@ void	color_map(t_data *data, int fd)
 		line = get_next_line(fd);
 		free(temp);
 	}
+	free(line);
 }
 
 void	draw_f_c(t_data *data, uint32_t	color, char c)
