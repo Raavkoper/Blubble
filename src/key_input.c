@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_input.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 14:10:43 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/20 12:09:49 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   key_input.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/09/05 14:10:43 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/20 13:10:50 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 void	input_data_up(t_data *data)
 {
-	if (worldMap[(int)(data->cam.posx + data->cam.dirx * \
-	0.03)][(int)data->cam.posy] == 0)
+	if (data->map.map[(int)data->cam.posy][(int)(data->cam.posx + data->cam.dirx * 0.03)] == '0')
 		data->cam.posx += data->cam.dirx * 0.03;
-	if (worldMap[(int)data->cam.posx][(int)(data->cam.posy + \
-	data->cam.diry * 0.03)] == 0)
+	if (data->map.map[(int)(data->cam.posy + data->cam.diry * 0.03)][(int)data->cam.posx] == '0')
 		data->cam.posy += data->cam.diry * 0.03;
 }
 
 void	input_data_down(t_data *data)
 {	
-	if (worldMap[(int)(data->cam.posx - data->cam.dirx * \
-	0.03)][(int)data->cam.posy] == 0)
+	if (data->map.map[(int)data->cam.posy][(int)(data->cam.posx - data->cam.dirx * 0.03)] == '0')
 		data->cam.posx -= data->cam.dirx * 0.03;
-	if (worldMap[(int)data->cam.posx][(int)(data->cam.posy - \
-	data->cam.diry * 0.03)] == 0)
+	if (data->map.map[(int)(data->cam.posy - data->cam.diry * 0.03)][(int)data->cam.posx] == '0')
 		data->cam.posy -= data->cam.diry * 0.03;
 }
 
