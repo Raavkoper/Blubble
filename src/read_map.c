@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/20 11:27:54 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/20 14:22:23 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	set_textures(t_data *data, int fd)
 		free(temp);
 		i++;
 	}
+	free(line);
 }
 
 int	map_strlen(char const *str)
@@ -59,12 +60,14 @@ void	copy_map(t_map *map, int fd, t_data *data)
 	char	*line;
 	int		i;
 	int		j;
+	int		k;
 
 	line = get_next_line(fd);
 	i = 0;
 	while (line)
 	{
 		j = 0;
+		k = 0;
 		while (line[j])
 		{
 			if (line[j] == 'N' || line[j] == 'E' \
@@ -74,8 +77,19 @@ void	copy_map(t_map *map, int fd, t_data *data)
 				data->cam.posy = i + 1;
 				line[j] = '0';
 			}
-			map->map[i][j] = line[j];
+			else if (line[j] == '\t')
+			{
+				map->map[i][k] = ' ';
+				map->map[i][k + 1] = ' ';
+				map->map[i][k + 2] = ' ';
+				map->map[i][k + 3] = ' ';
+				k += 3;
+			}
+			else
+				map->map[i][k] = line[j];
+			printf("%d\n", k);
 			j++;
+			k++;
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -169,6 +183,7 @@ void	color_map(t_data *data, int fd)
 		line = get_next_line(fd);
 		free(temp);
 	}
+	free(line);
 }
 
 void	draw_f_c(t_data *data, uint32_t	color, char c)
