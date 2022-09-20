@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/20 10:01:23 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:05:49 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void	init_raycasting(t_data *data, int x)
 	data->ray.mapx = (int)data->cam.posx;
 	data->ray.mapy = (int)data->cam.posy;
 	data->ray.hit = 0;
-	if (!data->ray.raydirx)
+	if (data->ray.raydirx == 0)
 		data->ray.raydirx = 1e30;
 	else
-		data->ray.deltadistx = sqrt(1 + (data->ray.raydiry * \
-		data->ray.raydiry) / (data->ray.raydirx * data->ray.raydirx));
-	if (!data->ray.raydiry)
+		data->ray.deltadistx = fabs(1 / data->ray.raydirx);
+	if (data->ray.raydiry == 0)
 		data->ray.raydiry = 1e30;
 	else
-		data->ray.deltadisty = sqrt(1 + (data->ray.raydirx * \
-		data->ray.raydirx) / (data->ray.raydiry * data->ray.raydiry));
+		data->ray.deltadisty = fabs(1 / data->ray.raydiry);
 }

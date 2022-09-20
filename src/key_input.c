@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:10:43 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/20 10:38:48 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:09:49 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,25 @@
 
 void	input_data_up(t_data *data)
 {
-	data->cam.posy += data->cam.diry * 0.03;
-	data->cam.posx += data->cam.dirx * 0.03;
+	if (worldMap[(int)(data->cam.posx + data->cam.dirx * \
+	0.03)][(int)data->cam.posy] == 0)
+		data->cam.posx += data->cam.dirx * 0.03;
+	if (worldMap[(int)data->cam.posx][(int)(data->cam.posy + \
+	data->cam.diry * 0.03)] == 0)
+		data->cam.posy += data->cam.diry * 0.03;
 }
 
 void	input_data_down(t_data *data)
-{
-	data->cam.posy -= data->cam.diry * 0.03;
-	data->cam.posx -= data->cam.dirx * 0.03;
+{	
+	if (worldMap[(int)(data->cam.posx - data->cam.dirx * \
+	0.03)][(int)data->cam.posy] == 0)
+		data->cam.posx -= data->cam.dirx * 0.03;
+	if (worldMap[(int)data->cam.posx][(int)(data->cam.posy - \
+	data->cam.diry * 0.03)] == 0)
+		data->cam.posy -= data->cam.diry * 0.03;
 }
 
-void	input_data_left(t_data *data)
+void	input_data_rotate_left(t_data *data)
 {
 	double	olddirx;
 	double	olddiry;
@@ -42,7 +50,7 @@ void	input_data_left(t_data *data)
 	data->cam.planey * cos(data->cam.rotspeed);
 }
 
-void	input_data_right(t_data *data)
+void	input_data_rotate_right(t_data *data)
 {
 	double	olddirx;
 	double	olddiry;
@@ -69,19 +77,15 @@ void	key_input(t_data *data)
 	olddirx = data->cam.dirx;
 	oldplanex = data->cam.planex;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-	{
 		input_data_up(data);
-	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-	{
 		input_data_down(data);
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-	{
-		input_data_left(data);
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-	{
-		input_data_right(data);
-	}
+	// if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+	// 	input_data_left(data);
+	// if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+	// 	input_data_right(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		input_data_rotate_left(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		input_data_rotate_right(data);
 }
