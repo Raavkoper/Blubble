@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting_utils.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 12:03:24 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/20 10:23:27 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting_utils.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/09/07 12:03:24 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/20 11:14:50 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_for_wall_hit(t_data *data)
 			data->ray.mapy += data->ray.stepy;
 			data->ray.side = 1;
 		}
-		if (worldMap[data->ray.mapx][data->ray.mapy] > 0)
+		if (data->map.map[data->ray.mapy][data->ray.mapx] > '0')
 			data->ray.hit = 1;
 	}
 }
@@ -101,8 +101,6 @@ void	draw_walls(t_data *data, int x, int color)
 	y = data->ray.drawstart;
 	while (y < data->ray.drawend && y < data->mlx->height)
 	{
-		// data->ray.texy = (int)data->ray.texpos & (texHeight - 1);
-		// data->ray.texpos += data->ray.step;
 		mlx_put_pixel(data->g_img, x, y, color);
 		y++;
 	}
