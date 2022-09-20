@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 10:39:59 by rkoper            #+#    #+#             */
-/*   Updated: 2022/09/20 10:02:45 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   read_map.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
+/*   Updated: 2022/09/20 11:27:54 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	read_map(t_data *data)
 {
 	int	fd;
 
-	fd = open(data->file, O_RDONLY);
+	fd = open(data->map_file, O_RDONLY);
 	init_map(data, fd);
 }
 
@@ -54,7 +54,7 @@ int	map_strlen(char const *str)
 	return (ret);
 }
 
-void	copy_map(t_map *map, int fd)
+void	copy_map(t_map *map, int fd, t_data *data)
 {
 	char	*line;
 	int		i;
@@ -67,6 +67,13 @@ void	copy_map(t_map *map, int fd)
 		j = 0;
 		while (line[j])
 		{
+			if (line[j] == 'N' || line[j] == 'E' \
+				|| line[j] == 'S' || line[j] == 'W')
+			{
+				data->cam.posx = j + 1;
+				data->cam.posy = i + 1;
+				line[j] = '0';
+			}
 			map->map[i][j] = line[j];
 			j++;
 		}
@@ -76,13 +83,13 @@ void	copy_map(t_map *map, int fd)
 	}
 }
 
-void	allocate_map(t_map *map, char *file)
+void	allocate_map(t_map *map, t_data *data)
 {
 	int		i;
 	int		fd;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
+	fd = open(data->map_file, O_RDONLY);
 	map->map = ft_calloc(map->height + 1, sizeof(char *));
 	i = 0;
 	while (i <= map->height)
@@ -97,10 +104,10 @@ void	allocate_map(t_map *map, char *file)
 		free(line);
 		i++;
 	}
-	copy_map(map, fd);
+	copy_map(map, fd, data);
 }
 
-void	parse_map(t_map *map, int fd, char *file)
+void	parse_map(t_map *map, int fd, t_data *data)
 {
 	char	*line;
 	int		height;
@@ -121,7 +128,7 @@ void	parse_map(t_map *map, int fd, char *file)
 	}
 	map->width = max;
 	map->height = height;
-	allocate_map(map, file);
+	allocate_map(map, data);
 }
 
 void	color_map(t_data *data, int fd)
@@ -191,5 +198,5 @@ void	init_map(t_data *data, int fd)
 {
 	set_textures(data, fd);
 	color_map(data, fd);
-	parse_map(&data->map, fd, data->file);
+	parse_map(&data->map, fd, data);
 }

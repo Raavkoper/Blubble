@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/20 10:35:36 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/20 11:37:52 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_data {
-	char			*file;
+	char			*map_file;
 	mlx_t			*mlx;
 	mlx_image_t		*g_img;
 	t_map			map;
@@ -114,7 +114,9 @@ void	read_map(t_data *data);
 void	init_map(t_data *data, int fd);
 void	set_textures(t_data *data, int fd);
 void	color_map(t_data *data, int fd);
-void	copy_map(t_map *map, int fd);
+void	copy_map(t_map *map, int fd, t_data *data);
+void	parse_map(t_map *map, int fd, t_data *data);
+void	allocate_map(t_map *map, t_data *data);
 
 void	draw_f_c(t_data *data, uint32_t	color, char c);
 int		create_rgba(int r, int g, int b, int a);
