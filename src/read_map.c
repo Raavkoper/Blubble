@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   read_map.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/19 15:22:12 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 10:39:59 by rkoper            #+#    #+#             */
+/*   Updated: 2022/09/20 10:02:45 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void	read_map(t_data *data)
 {
-	int fd;
+	int	fd;
 
 	fd = open(data->file, O_RDONLY);
-	
 	init_map(data, fd);
 }
 
 void	set_textures(t_data *data, int fd)
 {
-	int i;
-	char *line;
-	char *temp;
-	
+	char	*line;
+	char	*temp;
+	int		i;
+
 	i = 0;
 	line = get_next_line(fd);
 	while (i < 4)
@@ -41,7 +40,7 @@ void	set_textures(t_data *data, int fd)
 int	map_strlen(char const *str)
 {
 	int	i;
-	int ret;
+	int	ret;
 
 	i = 0;
 	ret = 0;
@@ -57,10 +56,10 @@ int	map_strlen(char const *str)
 
 void	copy_map(t_map *map, int fd)
 {
-	char *line;
-	int i;
-	int j;
-	
+	char	*line;
+	int		i;
+	int		j;
+
 	line = get_next_line(fd);
 	i = 0;
 	while (line)
@@ -79,10 +78,10 @@ void	copy_map(t_map *map, int fd)
 
 void	allocate_map(t_map *map, char *file)
 {
-	int i;
-	int fd;
-	char *line;
-	
+	int		i;
+	int		fd;
+	char	*line;
+
 	fd = open(file, O_RDONLY);
 	map->map = ft_calloc(map->height + 1, sizeof(char *));
 	i = 0;
@@ -103,10 +102,10 @@ void	allocate_map(t_map *map, char *file)
 
 void	parse_map(t_map *map, int fd, char *file)
 {
-	char *line;
-	int height;
-	int width;
-	int max;
+	char	*line;
+	int		height;
+	int		width;
+	int		max;
 
 	line = get_next_line(fd);
 	height = 0;
@@ -127,13 +126,16 @@ void	parse_map(t_map *map, int fd, char *file)
 
 void	color_map(t_data *data, int fd)
 {
-	char *line;
-	int i;
-	char *temp;
-	int r = 0;
-	int g = 0;
-	int b = 0;
-	
+	char	*line;
+	char	*temp;
+	int		i;
+	int		r;
+	int		g;
+	int		b;
+
+	r = 0;
+	g = 0;
+	b = 0;
 	line = get_next_line(fd);
 	i = 0;
 	while (i < 2)
@@ -153,7 +155,7 @@ void	color_map(t_data *data, int fd)
 			line++;
 		b = ft_atoi(line);
 		if (!i)
-			data->c_color =  create_rgba(r, g, b, 255);
+			data->c_color = create_rgba(r, g, b, 255);
 		else
 			data->f_color = create_rgba(r, g, b, 255);
 		i++;
@@ -167,16 +169,16 @@ void	draw_f_c(t_data *data, uint32_t	color, char c)
 	int			x;
 	int			y;
 	int			end;
-	
+
 	if (c == 'f')
 		y = 0;
 	else
-		y = screenHeight / 2;
-	end = y + (screenHeight / 2);
+		y = SCREENHEIGHT / 2;
+	end = y + (SCREENHEIGHT / 2);
 	while (y < end)
 	{
 		x = 0;
-		while (x < screenWidth)
+		while (x < SCREENWIDTH)
 		{
 			mlx_put_pixel(data->g_img, x, y, color);
 			x++;

@@ -22,7 +22,7 @@ SRCS =	main.c \
 		raycasting_utils.c \
 		key_input.c \
 		init_data.c \
-		hook.c \
+		start.c \
 		colors.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))

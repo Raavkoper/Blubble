@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   blubble.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/19 15:20:56 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/09/20 10:35:36 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
 
-# define mapWidth 24
-# define mapHeight 24
-# define texWidth 64
-# define texHeight 64
-# define screenWidth 640
-# define screenHeight 480
+# define MAPWIDTH 24
+# define MAPHEIGHT 24
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
+# define SCREENWIDTH 640
+# define SCREENHEIGHT 480
 
 typedef struct s_player {
 	double	movespeed;
@@ -72,7 +72,7 @@ typedef struct s_raycasting {
 typedef struct s_map {
 	char	**map;
 	int		width;
-	int 	height;
+	int		height;
 }				t_map;
 
 typedef struct s_data {
@@ -87,16 +87,16 @@ typedef struct s_data {
 	int				f_color;
 }				t_data;
 
-//main
-int		worldMap[mapWidth][mapHeight];
+/* main */
+int		worldMap[MAPWIDTH][MAPHEIGHT];
 void	init_game(t_data *data);
 void	create_window(t_data *data);
 
-//init data
+/* init data */
 void	init_raycasting(t_data *data, int x);
 void	init_camera(t_data *data);
 
-//raycasting
+/* raycasting */
 void	start(void *param);
 void	raycasting(t_data *data);
 void	calculate_step_direction(t_data *data);
@@ -106,9 +106,8 @@ void	calculate_textures(t_data *data);
 void	draw_walls(t_data *data, int x, int color);
 int		wall_colors(t_data *data);
 
-//keys
+/* keys */
 void	key_input(t_data *data);
-void	movement(t_data *data);
 
 /* map parse functions */
 void	read_map(t_data *data);
