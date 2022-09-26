@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:31:58 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/20 11:37:46 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/21 13:37:47 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 		printf("Incorrect number of arguments\n");
 		return (1);
 	}
-	data.mlx = mlx_init(SCREENWIDTH, SCREENHEIGHT, "Blubble", true);
+	data.mlx = mlx_init(SCREENWIDTH, SCREENHEIGHT, "Blubble", false);
 	if (!data.mlx)
 		exit(EXIT_FAILURE);
 	data.g_img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);
@@ -58,7 +58,6 @@ int	main(int argc, char **argv)
 	init_camera(&data);
 	draw_f_c(&data, data.c_color, 'c');
 	draw_f_c(&data, data.f_color, 'f');
-  printf("%c y, %dx, %d\n", data.map.map[data.ray.mapy][data.ray.mapx], data.ray.mapy, data.ray.mapx);
 	raycasting(&data);
 	mlx_image_to_window(data.mlx, data.g_img, 0, 0);
 	mlx_loop_hook(data.mlx, start, &data);

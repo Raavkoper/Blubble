@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/20 14:22:23 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/26 12:04:20 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	read_map(t_data *data)
 {
 	int	fd;
 
+	fd = open(data->map_file, O_RDONLY);
+	error_map(data, fd);
 	fd = open(data->map_file, O_RDONLY);
 	init_map(data, fd);
 }
@@ -34,6 +36,11 @@ void	set_textures(t_data *data, int fd)
 		line = get_next_line(fd);
 		free(temp);
 		i++;
+	}
+	if (line[0] != '\n')
+	{
+		printf("Error whitespace error\n");
+		exit(1);
 	}
 	free(line);
 }
@@ -61,21 +68,29 @@ void	copy_map(t_map *map, int fd, t_data *data)
 	int		i;
 	int		j;
 	int		k;
+	int		pos_count;
 
 	line = get_next_line(fd);
 	i = 0;
+	pos_count = 0;
 	while (line)
 	{
 		j = 0;
 		k = 0;
 		while (line[j])
 		{
-			if (line[j] == 'N' || line[j] == 'E' \
-				|| line[j] == 'S' || line[j] == 'W')
+			if ((line[j] == 'N' || line[j] == 'E' \
+				|| line[j] == 'S' || line[j] == 'W'))
 			{
 				data->cam.posx = j + 1;
 				data->cam.posy = i + 1;
-				line[j] = '0';
+				map->map[i][k] = '0';
+				if (pos_count)
+				{
+					printf("Error multiple starting positions set\n");
+					exit(1);
+				}
+				pos_count++;
 			}
 			else if (line[j] == '\t')
 			{
@@ -85,9 +100,14 @@ void	copy_map(t_map *map, int fd, t_data *data)
 				map->map[i][k + 3] = ' ';
 				k += 3;
 			}
-			else
+			else if (line[j] == '0' || ft_isdigit(line[j]) \
+				|| line[j] == ' ' || line[j] == '\n')
 				map->map[i][k] = line[j];
-			printf("%d\n", k);
+			else
+			{
+				printf("Error unregconized character in the map\n");
+				exit(1);
+			}
 			j++;
 			k++;
 		}
@@ -95,6 +115,7 @@ void	copy_map(t_map *map, int fd, t_data *data)
 		line = get_next_line(fd);
 		i++;
 	}
+	close(fd);
 }
 
 void	allocate_map(t_map *map, t_data *data)
@@ -142,6 +163,7 @@ void	parse_map(t_map *map, int fd, t_data *data)
 	}
 	map->width = max;
 	map->height = height;
+	close(fd);
 	allocate_map(map, data);
 }
 
@@ -157,8 +179,9 @@ void	color_map(t_data *data, int fd)
 	r = 0;
 	g = 0;
 	b = 0;
-	line = get_next_line(fd);
 	i = 0;
+	line = get_next_line(fd);
+	if (line[0] != '\n')
 	while (i < 2)
 	{
 		temp = line;
@@ -176,12 +199,31 @@ void	color_map(t_data *data, int fd)
 			line++;
 		b = ft_atoi(line);
 		if (!i)
-			data->c_color = create_rgba(r, g, b, 255);
-		else
+		{
+			if (temp[0] != 'F')
+			{
+				printf("Error didnt rightfully specify the floor color\n");
+				exit(1);
+			}
 			data->f_color = create_rgba(r, g, b, 255);
+		}
+		else
+		{
+			if (temp[0] != 'C')
+			{
+				printf("Error didnt rightfully specify the ceiling color\n");
+				exit(1);
+			}
+			data->c_color = create_rgba(r, g, b, 255);
+		}
 		i++;
 		line = get_next_line(fd);
 		free(temp);
+	}
+	if (line[0] != '\n')
+	{
+		printf("Error whitespace error\n");
+		exit(1);
 	}
 	free(line);
 }

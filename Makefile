@@ -23,7 +23,8 @@ SRCS =	main.c \
 		key_input.c \
 		init_data.c \
 		start.c \
-		colors.c
+		colors.c \
+		error.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
