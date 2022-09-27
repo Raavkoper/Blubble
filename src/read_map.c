@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/26 12:04:20 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/26 13:54:32 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,21 +200,21 @@ void	color_map(t_data *data, int fd)
 		b = ft_atoi(line);
 		if (!i)
 		{
-			if (temp[0] != 'F')
+			if (temp[0] != 'F' && temp[0] != 'C')
 			{
-				printf("Error didnt rightfully specify the floor color\n");
-				exit(1);
-			}
-			data->f_color = create_rgba(r, g, b, 255);
-		}
-		else
-		{
-			if (temp[0] != 'C')
-			{
-				printf("Error didnt rightfully specify the ceiling color\n");
+				printf("Error didnt rightfully specify the color\n");
 				exit(1);
 			}
 			data->c_color = create_rgba(r, g, b, 255);
+		}
+		else
+		{
+			if (temp[0] != 'F' && temp[0] != 'C')
+			{
+				printf("Error didnt rightfully specify the color\n");
+				exit(1);
+			}
+			data->f_color = create_rgba(r, g, b, 255);
 		}
 		i++;
 		line = get_next_line(fd);
