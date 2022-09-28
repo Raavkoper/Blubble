@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/26 13:54:32 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/09/28 15:26:11 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 void	read_map(t_data *data)
 {
 	int	fd;
-
+	
 	fd = open(data->map_file, O_RDONLY);
-	error_map(data, fd);
-	fd = open(data->map_file, O_RDONLY);
+	if (fd < 0 || fd > OPEN_MAX)
+	{
+		printf("Error failed opening the map file\n");
+		exit(1);
+	}
 	init_map(data, fd);
 }
 
@@ -37,7 +40,7 @@ void	set_textures(t_data *data, int fd)
 		free(temp);
 		i++;
 	}
-	if (line[0] != '\n')
+	if (line[0] != '\n' || !line[0])
 	{
 		printf("Error whitespace error\n");
 		exit(1);
@@ -115,6 +118,11 @@ void	copy_map(t_map *map, int fd, t_data *data)
 		line = get_next_line(fd);
 		i++;
 	}
+	if (!pos_count)
+	{
+		printf("Error no player position set\n");
+		exit(1);
+	}
 	close(fd);
 }
 
@@ -125,6 +133,11 @@ void	allocate_map(t_map *map, t_data *data)
 	char	*line;
 
 	fd = open(data->map_file, O_RDONLY);
+	if (fd < 0 || fd > OPEN_MAX)
+	{
+		printf("Error failed opening the map file\n");
+		exit(1);
+	}
 	map->map = ft_calloc(map->height + 1, sizeof(char *));
 	i = 0;
 	while (i <= map->height)
@@ -253,7 +266,9 @@ void	draw_f_c(t_data *data, uint32_t	color, char c)
 
 void	init_map(t_data *data, int fd)
 {
+	cub_extension_check(data->map_file);
 	set_textures(data, fd);
 	color_map(data, fd);
 	parse_map(&data->map, fd, data);
+	check_closed_walls(data->map);
 }
