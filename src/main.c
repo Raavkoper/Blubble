@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:31:58 by rkoper            #+#    #+#             */
-/*   Updated: 2022/09/29 11:14:25 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/09/29 11:17:08 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		printf("Incorrect number of arguments\n");
 		return (1);
 	}
-	data.mlx = mlx_init(SCREENWIDTH, SCREENHEIGHT, "Blubble", true);
+	data.mlx = mlx_init(SCREENWIDTH, SCREENHEIGHT, "Blubble", false);
 	if (!data.mlx)
 		exit(EXIT_FAILURE);
 	data.g_img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);

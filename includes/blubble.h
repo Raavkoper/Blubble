@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/29 10:52:59 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/09/29 11:16:45 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int		wall_colors(t_data *data);
 /* keys */
 void	key_input(t_data *data);
 
-/* map parse functions */
+/* map parsing */
 void	read_map(t_data *data);
 void	init_map(t_data *data, int fd);
 void	set_textures(t_data *data, int fd);
@@ -124,6 +124,10 @@ void	color_map(t_data *data, int fd);
 void	copy_map(t_map *map, int fd, t_data *data);
 void	parse_map(t_map *map, int fd, t_data *data);
 void	allocate_map(t_map *map, t_data *data);
+
+/* error checking */
+void	cub_extension_check(char *map_file);
+void	check_closed_walls(t_map map);
 
 void	draw_f_c(t_data *data, uint32_t	color, char c);
 int		create_rgba(int r, int g, int b, int a);
