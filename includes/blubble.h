@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/29 11:16:45 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/09/29 13:37:06 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_data {
 	t_raycasting	ray;
 	t_player		player;
 	t_camera		cam;
-	t_textures		tex;
+	xpm_t			xpm;
 	int				c_color;
 	int				f_color;
 }				t_data;
@@ -110,7 +110,7 @@ void	calculate_step_direction(t_data *data);
 void	check_for_wall_hit(t_data *data);
 void	calculate_perpwalldist(t_data *data);
 void	calculate_textures(t_data *data);
-void	draw_walls(t_data *data, int x, int color);
+void	draw_walls(t_data *data, int x);
 int		wall_colors(t_data *data);
 
 /* keys */
