@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   blubble.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/20 11:37:52 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/09/29 10:52:59 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_raycasting {
 	double	wallx;
 	int		texx;
 	int		texy;
+	int		texnum;
 	double	texpos;
 }				t_raycasting;
 
@@ -75,20 +76,26 @@ typedef struct s_map {
 	int		height;
 }				t_map;
 
+typedef struct s_textures {
+	mlx_texture_t	*texture1;
+}				t_textures;
+
+
 typedef struct s_data {
 	char			*map_file;
 	mlx_t			*mlx;
 	mlx_image_t		*g_img;
+	mlx_image_t		*img;
 	t_map			map;
 	t_raycasting	ray;
 	t_player		player;
 	t_camera		cam;
+	t_textures		tex;
 	int				c_color;
 	int				f_color;
 }				t_data;
 
 /* main */
-int		worldMap[MAPWIDTH][MAPHEIGHT];
 void	init_game(t_data *data);
 void	create_window(t_data *data);
 

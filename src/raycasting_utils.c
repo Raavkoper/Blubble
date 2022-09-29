@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting_utils.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/09/07 12:03:24 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/09/20 11:14:50 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/07 12:03:24 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/09/29 11:15:05 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	calculate_perpwalldist(t_data *data)
 	data->ray.drawend = data->ray.lineheight / 2 + data->mlx->height / 2;
 	if (data->ray.drawend >= data->mlx->height)
 		data->ray.drawend = data->mlx->height - 1;
+	// data->ray.texnum = data->map.map[data->ray.mapx][data->ray.mapy] - 1;
 }
 
 void	calculate_textures(t_data *data)
@@ -96,11 +97,13 @@ void	calculate_textures(t_data *data)
 
 void	draw_walls(t_data *data, int x, int color)
 {
-	int	y;
+	int				y;
 
 	y = data->ray.drawstart;
 	while (y < data->ray.drawend && y < data->mlx->height)
 	{
+		// data->ray.texy = (int)data->ray.texpos % texture->height;
+		data->ray.texpos += data->ray.stepy;
 		mlx_put_pixel(data->g_img, x, y, color);
 		y++;
 	}
