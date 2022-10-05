@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   read_map.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/09/29 11:41:11 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 10:39:59 by rkoper            #+#    #+#             */
+/*   Updated: 2022/10/05 15:33:53 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	read_map(t_data *data)
 {
 	int	fd;
-	
+
 	fd = open(data->map_file, O_RDONLY);
 	if (fd < 0 || fd > OPEN_MAX)
 	{
@@ -35,6 +35,7 @@ void	set_textures(t_data *data, int fd)
 	line = get_next_line(fd);
 	while (i < 4)
 	{
+		safe_wall_textures(data, line);
 		temp = line;
 		line = get_next_line(fd);
 		free(temp);
@@ -65,6 +66,26 @@ int	map_strlen(char const *str)
 	return (ret);
 }
 
+int	check_player_direction(t_data *data, char *line, int j)
+{
+	if (line[j] == 'N' || line[j] == 'E' \
+	|| line[j] == 'S' || line[j] == 'W')
+	{
+		if (line[j] == 'N')
+			data->cam.diry = -1;
+		else if (line[j] == 'S')
+			data->cam.diry = +1;
+		else if (line[j] == 'E')
+			data->cam.dirx = +1;
+		else if (line[j] == 'W')
+			data->cam.dirx = -1;
+		data->cam.planex = tan(M_PI_2 * 70 / 180.0) * -data->cam.diry;
+		data->cam.planey = tan(M_PI_2 * 70 / 180.0) * data->cam.dirx;
+		return (1);
+	}
+	return (0);
+}
+
 void	copy_map(t_map *map, int fd, t_data *data)
 {
 	char	*line;
@@ -82,11 +103,10 @@ void	copy_map(t_map *map, int fd, t_data *data)
 		k = 0;
 		while (line[j])
 		{
-			if ((line[j] == 'N' || line[j] == 'E' \
-				|| line[j] == 'S' || line[j] == 'W'))
+			if ((check_player_direction(data, line, j)))
 			{
-				data->cam.posx = j + 1;
-				data->cam.posy = i + 1;
+				data->cam.posx = j + 0.5;
+				data->cam.posy = i + 0.5;
 				map->map[i][k] = '0';
 				if (pos_count)
 				{

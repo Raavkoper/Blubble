@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/09/20 12:05:49 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:08:53 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_camera(t_data *data)
 {
-	data->cam.planex = 0;
-	data->cam.planey = 0.66;
-	data->cam.dirx = -1;
-	data->cam.diry = 0;
+	// data->cam.planex = 0;
+	// data->cam.planey = 0.66;
+	// data->cam.dirx = -1;
+	// data->cam.diry = 0;
 }
 
 void	init_raycasting(t_data *data, int x)
