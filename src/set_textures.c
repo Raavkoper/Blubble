@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:49 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/05 15:09:57 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:17:13 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,25 @@ void	safe_wall_textures(t_data *data, char *line)
 		data->tex.tex4 = mlx_load_png("textures/texture4.png");
 	free(str);
 	j++;
+}
+
+void	set_textures(t_data *data, int fd)
+{
+	char	*line;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	line = get_next_line(fd);
+	while (i < 4)
+	{
+		safe_wall_textures(data, line);
+		temp = line;
+		line = get_next_line(fd);
+		free(temp);
+		i++;
+	}
+	if (line[0] != '\n' || !line[0])
+		errorr("Error whitespace error\n");
+	free(line);
 }
