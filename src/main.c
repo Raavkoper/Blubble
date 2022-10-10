@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 10:31:58 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/05 14:09:05 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 10:31:58 by rkoper        #+#    #+#                 */
+/*   Updated: 2022/10/06 16:55:02 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	data.player.movespeed = 0.03;
 	if (argc != 2)
 	{
 		printf("Incorrect number of arguments\n");
