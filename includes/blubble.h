@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/06 14:28:19 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:39:44 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_data {
 	t_textures		tex;
 	int				c_color;
 	int				f_color;
+	int				start_map_line;
 }				t_data;
 
 /* main */
@@ -113,11 +114,19 @@ void	check_for_wall_hit(t_data *data);
 void	calculate_perpwalldist(t_data *data);
 void	calculate_textures(t_data *data);
 void	draw_walls(t_data *data, int x, mlx_texture_t *texture);
-int		wall_colors(t_data *data);
 
 /* textures */
-void	safe_wall_textures(t_data *data, char *line);
+int		safe_wall_textures(t_data *data, char *line);
 void	set_textures(t_data *data, int fd);
+
+/* color */
+void	check_floor_ceiling(t_data *data, char *line, int fd);
+void	elements(t_data *data, int fd, int line_count);
+void	color_floor(t_data *data, char *line);
+void	color_ceiling(t_data *data, char *line);
+int		wall_colors(t_data *data);
+void	draw_f_c(t_data *data, uint32_t	color, char c);
+int		create_rgba(int r, int g, int b, int a);
 
 /* keys */
 void	key_input(t_data *data);
@@ -139,6 +148,4 @@ void	errorr(char *s);
 void	cub_extension_check(char *map_file);
 void	check_closed_walls(t_map map);
 
-void	draw_f_c(t_data *data, uint32_t	color, char c);
-int		create_rgba(int r, int g, int b, int a);
 #endif

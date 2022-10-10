@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:45:50 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/06 13:06:04 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:41:18 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,79 +49,31 @@ int	map_strlen(char const *str)
 	return (ret);
 }
 
-void	color_map(t_data *data, int fd)
+void	elements(t_data *data, int fd, int line_count)
 {
 	char	*line;
 	char	*temp;
-	int		i;
-	int		r;
-	int		g;
-	int		b;
 
-	r = 0;
-	g = 0;
-	b = 0;
-	i = 0;
 	line = get_next_line(fd);
-	if (line[0] != '\n')
+	while (line_count < 6)
 	{
-		while (i < 2)
+		if (line[0] != 'N' && line[0] != 'S' && \
+		line[0] != 'E' && line[0] != 'W' && \
+		line[0] != 'F' && line[0] != 'C' && \
+		line[0] != '\n' && line[0] != '\0')
+			errorr("Error no valid (color) path");
+		else if (line[0] == 'N' || line[0] == 'S' \
+		|| line[0] == 'E' || line[0] == 'W')
+			line_count += safe_wall_textures(data, line);
+		else if (line[0] == 'F' || line[0] == 'C')
 		{
-			temp = line;
-			while (*line && !ft_isdigit(*line))
-				line++;
-			r = ft_atoi(line);
-			while (ft_isdigit(*line))
-				line++;
-			while (!ft_isdigit(*line))
-				line++;
-			g = ft_atoi(line);
-			while (ft_isdigit(*line))
-				line++;
-			while (!ft_isdigit(*line))
-				line++;
-			b = ft_atoi(line);
-			if (!i)
-			{
-				if (temp[0] != 'F' && temp[0] != 'C')
-					errorr("Error didnt rightfully specify the color");
-				data->c_color = create_rgba(r, g, b, 255);
-			}
-			else
-			{
-				if (temp[0] != 'F' && temp[0] != 'C')
-					errorr("Error didnt rightfully specify the color");
-				data->f_color = create_rgba(r, g, b, 255);
-			}
-			i++;
-			line = get_next_line(fd);
-			free(temp);
+			check_floor_ceiling(data, line, fd);
+			line_count += 1;
 		}
+		temp = line;
+		line = get_next_line(fd);
+		free(temp);
+		data->start_map_line += 1;
 	}
-	if (line[0] != '\n')
-		errorr("Error whitespace error");
 	free(line);
-}
-
-void	draw_f_c(t_data *data, uint32_t	color, char c)
-{
-	int			x;
-	int			y;
-	int			end;
-
-	if (c == 'f')
-		y = 0;
-	else
-		y = SCREENHEIGHT / 2;
-	end = y + (SCREENHEIGHT / 2);
-	while (y < end)
-	{
-		x = 0;
-		while (x < SCREENWIDTH)
-		{
-			mlx_put_pixel(data->g_img, x, y, color);
-			x++;
-		}
-		y++;
-	}
 }
