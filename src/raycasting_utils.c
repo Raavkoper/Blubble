@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 12:03:24 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/06 12:43:54 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:34:42 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	calculate_textures(t_data *data)
 	data->ray.texx = (int)(data->ray.wallx * (double)TEXWIDTH);
 	if (data->ray.side == 0 && data->ray.raydirx == 0)
 		data->ray.texx = TEXWIDTH - data->ray.texx - 1;
-	// if (data->ray.side == 1 && data->ray.raydiry < 0)
+	// if (data->ray.side == 1 && data->ray.raydiry > 0)
 	// 	data->ray.texx = TEXWIDTH - data->ray.texx - 1;
 	data->ray.step = 1.0 * TEXHEIGHT / data->ray.lineheight;
 	data->ray.texpos = (data->ray.drawstart - \

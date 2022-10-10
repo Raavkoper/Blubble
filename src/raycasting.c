@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:17:44 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/06 12:54:38 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:27:30 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ mlx_texture_t	*wall_texture(t_data *data)
 {
 	if (data->ray.side == 0 && data->ray.raydirx < 0)
 	{
-		return (data->tex.tex1);
+		return (data->tex.we);
 	}
 	else if (data->ray.side == 1 && data->ray.raydiry > 0)
 	{
-		return (data->tex.tex2);
+		return (data->tex.so);
 	}
-	return (data->tex.tex3);
+	if (data->ray.side == 1)
+		return (data->tex.no);
+	else
+		return (data->tex.ea);
 }
 
 void	raycasting(t_data *data)
