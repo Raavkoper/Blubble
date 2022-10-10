@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/05 14:09:24 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:05:07 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,20 +117,25 @@ int		wall_colors(t_data *data);
 
 /* textures */
 void	safe_wall_textures(t_data *data, char *line);
+void	set_textures(t_data *data, int fd);
 
 /* keys */
 void	key_input(t_data *data);
+void	input_data_up(t_data *data);
+void	input_data_down(t_data *data);
+void	input_data_left(t_data *data);
+void	input_data_right(t_data *data);
 
 /* map parsing */
 void	read_map(t_data *data);
 void	init_map(t_data *data, int fd);
 void	set_textures(t_data *data, int fd);
 void	color_map(t_data *data, int fd);
-void	copy_map(t_map *map, int fd, t_data *data);
-void	parse_map(t_map *map, int fd, t_data *data);
-void	allocate_map(t_map *map, t_data *data);
+int		check_player_direction(t_data *data, char *line, int j);
+int		map_strlen(char const *str);
 
 /* error checking */
+void	errorr(char *s);
 void	cub_extension_check(char *map_file);
 void	check_closed_walls(t_map map);
 

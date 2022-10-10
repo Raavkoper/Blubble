@@ -18,9 +18,11 @@ INC := -I $(INCLUDE_DIR)
 
 SRCS =	main.c \
 		read_map.c \
+		map_utils.c \
 		raycasting.c \
 		raycasting_utils.c \
 		key_input.c \
+		wasd.c \
 		init_data.c \
 		start.c \
 		colors.c \

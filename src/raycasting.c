@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:17:44 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/05 15:25:37 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:54:38 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 mlx_texture_t	*wall_texture(t_data *data)
 {
-	if (data->ray.side == 0)
+	if (data->ray.side == 0 && data->ray.raydirx < 0)
 	{
 		return (data->tex.tex1);
 	}
-	else
+	else if (data->ray.side == 1 && data->ray.raydiry > 0)
 	{
 		return (data->tex.tex2);
 	}
+	return (data->tex.tex3);
 }
 
 void	raycasting(t_data *data)
 {
 	int				x;
-	int				color;
 	mlx_texture_t	*texture;
 
 	x = 0;
@@ -37,7 +37,6 @@ void	raycasting(t_data *data)
 		calculate_step_direction(data);
 		check_for_wall_hit(data);
 		calculate_perpwalldist(data);
-		color = wall_colors(data);
 		texture = wall_texture(data);
 		calculate_textures(data);
 		draw_walls(data, x, texture);

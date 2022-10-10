@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        ::::::::            */
 /*   raycasting_utils.c                                 :+:    :+:            */
 /*                                                     +:+                    */
@@ -7,6 +8,15 @@
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 12:03:24 by svan-ass      #+#    #+#                 */
 /*   Updated: 2022/10/10 11:06:19 by rkoper        ########   odam.nl         */
+=======
+/*                                                        :::      ::::::::   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/07 12:03:24 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/06 12:43:54 by svan-ass         ###   ########.fr       */
+>>>>>>> a539c05af8b9f466cf4935a2424777dff1f64366
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +114,7 @@ void	draw_walls(t_data *data, int x, mlx_texture_t *texture)
 	y = data->ray.drawstart;
 	while (y < data->ray.drawend && y < data->mlx->height)
 	{
-		data->ray.texy = (int)data->ray.texpos % texture->height - 1;
+		data->ray.texy = (int)data->ray.texpos & (texture->height - 1);
 		data->ray.texpos += data->ray.step;
 		color = 0;
 		if (data->ray.texx >= 0)
