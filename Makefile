@@ -18,6 +18,7 @@ INC := -I $(INCLUDE_DIR)
 
 SRCS =	main.c \
 		read_map.c \
+		read_map_utils.c \
 		map_utils.c \
 		raycasting.c \
 		raycasting_utils.c \

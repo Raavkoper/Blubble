@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 12:39:30 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:11:06 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void	input_data_right(t_data *data);
 /* map parsing */
 void	read_map(t_data *data);
 void	init_map(t_data *data, int fd);
+void	check_width_height(t_map *map, int fd, char *line);
 void	set_textures(t_data *data, int fd);
 void	color_map(t_data *data, int fd);
 int		check_player_direction(t_data *data, char *line, int j);
