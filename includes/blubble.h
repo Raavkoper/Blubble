@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/06 14:28:19 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/10/10 13:53:19 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_data {
 	t_player		player;
 	t_camera		cam;
 	t_textures		tex;
+	int i;
 	int				c_color;
 	int				f_color;
 }				t_data;
