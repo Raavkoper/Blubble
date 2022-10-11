@@ -1,7 +1,7 @@
 NO ./textures/texture1.png
 SO ./textures/texture4.png
 WE ./textures/texture4.png
-EA ./textures/texture2.png
+EA./textures/texture2.png
 
 F 245,209,129
 C 255,243,   255

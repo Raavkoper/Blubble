@@ -27,6 +27,7 @@ SRCS =	main.c \
 		start.c \
 		colors.c \
 		set_textures.c \
+		set_textures_utils.c \
 		error.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))

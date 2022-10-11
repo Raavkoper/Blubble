@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:45:50 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/10 14:41:18 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:33:57 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void	elements(t_data *data, int fd, int line_count)
 		free(temp);
 		data->start_map_line += 1;
 	}
+	double_check_map(data);
 	free(line);
 }

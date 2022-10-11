@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/10 14:39:44 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:34:28 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ typedef struct s_map {
 	char	**map;
 	int		width;
 	int		height;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
 }				t_map;
 
 typedef struct s_textures {
@@ -118,6 +122,11 @@ void	draw_walls(t_data *data, int x, mlx_texture_t *texture);
 /* textures */
 int		safe_wall_textures(t_data *data, char *line);
 void	set_textures(t_data *data, int fd);
+void	wall_texture_no(t_data *data, char *str);
+void	wall_texture_so(t_data *data, char *str);
+void	wall_texture_we(t_data *data, char *str);
+void	wall_texture_ea(t_data *data, char *str);
+void	double_check_map(t_data *data);
 
 /* color */
 void	check_floor_ceiling(t_data *data, char *line, int fd);
