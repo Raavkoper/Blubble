@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:10:43 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/10 11:36:46 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:39:52 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	input_data_rotate_right(t_data *data)
 	data->cam.planey = oldplanex * sin(data->cam.rotspeed) + \
 	data->cam.planey * cos(data->cam.rotspeed);
 }
-
 
 void	key_input(t_data *data)
 {	

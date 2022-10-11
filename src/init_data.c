@@ -6,19 +6,11 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/06 12:43:22 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:52:46 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/blubble.h"
-
-void	init_camera(t_data *data)
-{
-	data->cam.planex = 0;
-	data->cam.planey = 0.66;
-	data->cam.dirx = -1;
-	data->cam.diry = 0;
-}
 
 void	init_raycasting(t_data *data, int x)
 {

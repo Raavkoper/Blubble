@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 10:39:59 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/06 13:28:14 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:43:26 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	allocate_map(t_map *map, t_data *data)
 		i++;
 	}
 	i = 0;
-	while (i < 8)
+	while (i < data->start_map_line)
 	{
 		line = get_next_line(fd);
 		free(line);
@@ -102,11 +102,19 @@ void	allocate_map(t_map *map, t_data *data)
 void	parse_map(t_map *map, int fd, t_data *data)
 {
 	char	*line;
+	char	*temp;
 	int		height;
 	int		width;
 	int		max;
 
 	line = get_next_line(fd);
+	while (line[0] == '\n' || line[0] == '\0')
+	{
+		temp = line;
+		line = get_next_line(fd);
+		free(temp);
+		data->start_map_line += 1;
+	}
 	height = 0;
 	max = 0;
 	while (line)
@@ -126,9 +134,11 @@ void	parse_map(t_map *map, int fd, t_data *data)
 
 void	init_map(t_data *data, int fd)
 {
+	int	line_count;
+
+	line_count = 0;
 	cub_extension_check(data->map_file);
-	set_textures(data, fd);
-	color_map(data, fd);
+	elements(data, fd, line_count);
 	parse_map(&data->map, fd, data);
 	check_closed_walls(data->map);
 }
