@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/11 13:19:05 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/11 13:22:58 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,6 @@ void	parse_map(t_map *map, int fd, t_data *data)
 {
 	char	*line;
 	char	*temp;
-	int		height;
-	int		width;
-	int		max;
 
 	line = get_next_line(fd);
 	while (line[0] == '\n' || line[0] == '\0')
@@ -115,19 +112,7 @@ void	parse_map(t_map *map, int fd, t_data *data)
 		free(temp);
 		data->start_map_line += 1;
 	}
-	height = 0;
-	max = 0;
-	while (line)
-	{
-		width = map_strlen(line);
-		if (width > max)
-			max = width;
-		free(line);
-		line = get_next_line(fd);
-		height++;
-	}
-	map->width = max;
-	map->height = height;
+	check_width_height(map, fd, line);
 	close(fd);
 	allocate_map(map, data);
 }

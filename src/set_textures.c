@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:49 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 11:55:07 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:46:55 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,8 @@ char	*str_cpy(char *str, char *line)
 
 int	safe_wall_textures(t_data *data, char *line)
 {
-	int		i;
-	int		j;
 	char	*str;
 
-	j = 0;
-	i = 2;
 	str = ft_calloc(strlen(line) + 1, 1);
 	str = str_cpy(str, line);
 	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
