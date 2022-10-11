@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting_utils.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/10 11:35:35 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/11 11:30:50 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/10 11:35:35 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/11 11:50:14 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	draw_walls(t_data *data, int x, mlx_texture_t *texture)
 	data->ray.step = 1.0 * texture->height / data->ray.lineheight;
 	data->ray.texpos = (data->ray.drawstart - \
 	data->mlx->height / 2 + data->ray.lineheight / 2) * data->ray.step;
-	im_ad = data->g_img->pixels + ((y * data->g_img->width + x ) * 4);
+	im_ad = data->g_img->pixels + ((y * data->g_img->width + x) * 4);
 	y = data->ray.drawstart;
 	while (y < data->ray.drawend && y < data->mlx->height)
 	{

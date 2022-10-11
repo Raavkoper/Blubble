@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 11:24:06 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:51:50 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_data(t_data *data)
 	data->map.so = 0;
 	data->map.we = 0;
 	data->map.ea = 0;
+	data->map.f = 0;
+	data->map.c = 0;
 }
 
 void	init_raycasting(t_data *data, int x)

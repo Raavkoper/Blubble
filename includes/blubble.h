@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 11:40:06 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:50:33 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_map {
 	int		so;
 	int		we;
 	int		ea;
+	int		f;
+	int		c;
 }				t_map;
 
 typedef struct s_textures {
@@ -97,7 +99,7 @@ typedef struct s_data {
 	t_player		player;
 	t_camera		cam;
 	t_textures		tex;
-	int i;
+	int				i;
 	int				c_color;
 	int				f_color;
 	int				start_map_line;
@@ -105,6 +107,7 @@ typedef struct s_data {
 
 /* main */
 void	init_game(t_data *data);
+void	init_data(t_data *data);
 void	create_window(t_data *data);
 
 /* init data */
