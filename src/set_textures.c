@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:49 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/10 15:05:39 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:33:59 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	safe_wall_textures(t_data *data, char *line)
 	char	*str;
 
 	j = 0;
-	i = 5;
+	i = 2;
 	str = ft_calloc(strlen(line) + 1, 1);
 	while (line[i] == ' ' || line[i] == '.' || line[i] == '/')
 		i++;
@@ -93,6 +93,8 @@ int	safe_wall_textures(t_data *data, char *line)
 		wall_texture_we(data, str);
 	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
 		wall_texture_ea(data, str);
+	else
+		errorr("Error no right texture identifier");
 	free(str);
 	return (1);
 }
