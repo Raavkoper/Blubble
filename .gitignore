@@ -3,3 +3,4 @@ objs
 .DS_store
 cub3d
 out
+libs/libft/libft.a

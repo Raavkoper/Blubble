@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:03:38 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/06 13:25:56 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   error.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/09/26 10:03:38 by rkoper        #+#    #+#                 */
+/*   Updated: 2022/10/11 11:54:22 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	errorr(char *s)
 {
-	printf("%s\n", s);
+	write(2, s, ft_strlen(s));
+	write(2, "\n", 1);
 	exit(1);
 }
 
@@ -34,10 +35,7 @@ void	check_closed_walls2(t_map map, int i, int j)
 	{
 		if (map.map[i][j] != ' ' && map.map[i][j] \
 		!= '1' && map.map[i][j] != '\n')
-		{
-			printf("Error open spaces left on map x: %d, y: %d\n", j, i);
-			exit(1);
-		}
+			errorr("Error open spaces left on map :/");
 	}
 	else
 	{
@@ -47,10 +45,7 @@ void	check_closed_walls2(t_map map, int i, int j)
 			|| (map.map[i][j - 1] != '0' && map.map[i][j - 1] != '1') \
 			|| (map.map[i + 1][j] != '0' && map.map[i + 1][j] != '1') \
 			|| (map.map[i - 1][j] != '0' && map.map[i - 1][j] != '1'))
-			{
-				printf("Error open spaces left on map x: %d, y: %d\n", j, i);
-				exit(1);
-			}
+				errorr("Error open spaces left on map :/");
 		}
 	}
 }

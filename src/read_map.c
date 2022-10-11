@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 10:39:59 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/10 14:43:26 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   read_map.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
+/*   Updated: 2022/10/11 11:49:57 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	read_map(t_data *data)
 
 	fd = open(data->map_file, O_RDONLY);
 	if (fd < 0 || fd > OPEN_MAX)
-		errorr("Error failed opening the map file\n");
+		errorr("Error failed opening the map file");
 	init_map(data, fd);
 }
 
