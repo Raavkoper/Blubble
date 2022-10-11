@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 13:11:06 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/10/11 13:56:31 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_map {
 	char	**map;
 	int		width;
 	int		height;
+	int		pos_count;
 	int		no;
 	int		so;
 	int		we;
@@ -97,7 +98,6 @@ typedef struct s_data {
 	t_player		player;
 	t_camera		cam;
 	t_textures		tex;
-	int				i;
 	int				c_color;
 	int				f_color;
 	int				start_map_line;
@@ -153,6 +153,8 @@ void	init_map(t_data *data, int fd);
 void	check_width_height(t_map *map, int fd, char *line);
 void	set_textures(t_data *data, int fd);
 void	color_map(t_data *data, int fd);
+void	copy_map_2(t_map *map, char c, int *k, int i);
+void	set_player_pos(t_data *data, int i, int j, int k);
 int		check_player_direction(t_data *data, char *line, int j);
 int		map_strlen(char const *str);
 
