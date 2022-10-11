@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   blubble.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/11 11:57:52 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/11 12:39:30 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
 
-# define MAPWIDTH 24
-# define MAPHEIGHT 24
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define SCREENWIDTH 640

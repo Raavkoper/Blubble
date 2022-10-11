@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:45:50 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 11:54:10 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:44:03 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ int	map_strlen(char const *str)
 	return (ret);
 }
 
+int	elements_check(char *line)
+{
+	if (line[0] != 'N' && line[0] != 'S' && \
+	line[0] != 'E' && line[0] != 'W' && \
+	line[0] != 'F' && line[0] != 'C' && \
+	line[0] != '\n' && line[0] != '\0')
+		return (1);
+	return (0);
+}
+
 void	elements(t_data *data, int fd, int line_count)
 {
 	char	*line;
@@ -57,10 +67,7 @@ void	elements(t_data *data, int fd, int line_count)
 	line = get_next_line(fd);
 	while (line_count < 6)
 	{
-		if (line[0] != 'N' && line[0] != 'S' && \
-		line[0] != 'E' && line[0] != 'W' && \
-		line[0] != 'F' && line[0] != 'C' && \
-		line[0] != '\n' && line[0] != '\0')
+		if (elements_check(line))
 			errorr("Error no valid (color) path");
 		else if (line[0] == 'N' || line[0] == 'S' \
 		|| line[0] == 'E' || line[0] == 'W')
