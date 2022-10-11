@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:35:45 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/10 14:23:48 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:52:17 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	color_floor(t_data *data, char *line)
 		line++;
 	b = ft_atoi(line);
 	data->f_color = create_rgba(r, g, b, 255);
+	data->map.f += 1;
 }
 
 void	color_ceiling(t_data *data, char *line)
@@ -65,6 +66,7 @@ void	color_ceiling(t_data *data, char *line)
 		line++;
 	b = ft_atoi(line);
 	data->c_color = create_rgba(r, g, b, 255);
+	data->map.c += 1;
 }
 
 void	draw_f_c(t_data *data, uint32_t	color, char c)
