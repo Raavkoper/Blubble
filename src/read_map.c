@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/11 11:49:57 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/11 13:19:05 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	copy_map(t_map *map, int fd, t_data *data)
 				data->cam.posy = i + 0.5;
 				map->map[i][k] = '0';
 				if (pos_count)
-					errorr("Error multiple starting positions set\n");
+					errorr("Error multiple starting positions set");
 				pos_count++;
 			}
 			else if (line[j] == '\t')
