@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting_utils.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 11:35:35 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/10 11:35:37 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting_utils.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/10/10 11:35:35 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/10/11 11:30:50 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,8 @@ void	calculate_textures(t_data *data)
 	else
 		data->ray.wallx = data->cam.posx + \
 		data->ray.perpwalldist * data->ray.raydirx;
+	data->ray.wallx -= floor(data->ray.wallx);
 	data->ray.texx = (int)(data->ray.wallx * (double)TEXWIDTH);
-	if (data->ray.side == 0 && data->ray.raydirx == 0)
-		data->ray.texx = TEXWIDTH - data->ray.texx - 1;
-	// if (data->ray.side == 1 && data->ray.raydiry > 0)
-	// if (data->ray.side == 0 && data->ray.raydirx > 0)
-	// 	data->ray.texx = TEXWIDTH - data->ray.texx - 1;
-	// if (data->ray.side == 1 && data->ray.raydiry < 0)
-	// 	data->ray.texx = TEXWIDTH - data->ray.texx - 1;
 }
 
 void	draw_walls(t_data *data, int x, mlx_texture_t *texture)
@@ -107,9 +101,8 @@ void	draw_walls(t_data *data, int x, mlx_texture_t *texture)
 	y = data->ray.drawstart;
 	while (y < data->ray.drawend && y < data->mlx->height)
 	{
-		data->ray.texy = (int)data->ray.texpos & (texture->height - 1);
+		data->ray.texy = (int)data->ray.texpos & (texture->height) - 1;
 		data->ray.texpos += data->ray.step;
-		color = 0;
 		if (data->ray.texx >= 0)
 			color = (*(int *)(texture->pixels + \
 			(texture->width * data->ray.texy + data->ray.texx) * 4));

@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 11:34:28 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:40:06 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_data {
 	t_player		player;
 	t_camera		cam;
 	t_textures		tex;
+	int i;
 	int				c_color;
 	int				f_color;
 	int				start_map_line;
