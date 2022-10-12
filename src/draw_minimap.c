@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:45:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/12 15:09:58 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/12 15:20:53 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,17 @@ void	update_minimap(t_data *data)
 	y = 0;
 	map = data->map.map;
 	y2 = -7;
-	while (y < 14)
+	while (y < 15)
 	{
 		x = 0;
 		x2 = -7;
-		while (x < 14)
+		while (x < 15)
 		{
 			if ((int)data->cam.posy + y2 > data->map.height || (int)data->cam.posx + x2 > data->map.width \
 				|| (int)data->cam.posy + y2 < 0 || (int)data->cam.posx + x2 < 0)
 				break ;
+			else if (x == 0 || x == 14 || y == 0 || y == 14)
+				data->minimap.map[y][x] = '2';
 			else
 				data->minimap.map[y][x] = map[(int)data->cam.posy + y2][(int)data->cam.posx + x2];
 			x2++;
@@ -114,12 +116,12 @@ void	draw_minimap(t_data *data)
 				xhold = x;
 				if (y2 == 7 && x2 == 7)
 					color = player;
-				else if (data->minimap.map[y2][x2] == '1')
-				{
-					color = wall;
-				}
 				else if (data->minimap.map[y2][x2] == '0')
 					color = empty;
+				else if (data->minimap.map[y2][x2] == '1')
+					color = wall;
+				else if (data->minimap.map[y2][x2] == '2')
+					color = data->f_color;
 				while (x < xhold + (data->minimap.width / 15))
 				{	
 					*(uint32_t *)(data->g_img->pixels + \
