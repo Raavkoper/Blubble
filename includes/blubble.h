@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/11 13:56:31 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/12 14:27:21 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
-# define SCREENWIDTH 640
-# define SCREENHEIGHT 480
+# define SCREENWIDTH 1000
+# define SCREENHEIGHT 680
 
 typedef struct s_player {
 	double	movespeed;
@@ -42,6 +42,16 @@ typedef struct s_camera {
 	double	camerax;
 	double	rotspeed;
 }				t_camera;
+
+typedef	struct s_minimap {
+	int 	x_start;
+	int 	y_start;
+	int 	x_end;
+	int 	y_end;
+	int		width;
+	int		height;
+	char	map[15][15];
+}				t_minimap;
 
 typedef struct s_raycasting {
 	double	raydirx;
@@ -98,6 +108,7 @@ typedef struct s_data {
 	t_player		player;
 	t_camera		cam;
 	t_textures		tex;
+	t_minimap		minimap;
 	int				c_color;
 	int				f_color;
 	int				start_map_line;
@@ -163,4 +174,7 @@ void	errorr(char *s);
 void	cub_extension_check(char *map_file);
 void	check_closed_walls(t_map map);
 
+/* minimap functions */
+void	update_minimap(t_data *data);
+void	draw_minimap(t_data *data);
 #endif

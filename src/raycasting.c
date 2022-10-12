@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/10 14:06:25 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/12 14:55:22 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ void	raycasting(t_data *data)
 		draw_walls(data, x, texture);
 		x++;
 	}
+	update_minimap(data);
+	draw_minimap(data);
 }
