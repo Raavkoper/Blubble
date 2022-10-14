@@ -32,7 +32,8 @@ SRCS =	main.c \
 		set_textures_utils.c \
 		load_animation.c \
 		load_animation_utils.c \
-		error.c
+		error.c \
+		draw_minimap.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

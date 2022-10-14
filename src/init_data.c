@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/14 14:34:31 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:45:10 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	init_data(t_data *data)
 	data->so_wall = 'A';
 	data->we_wall = 'A';
 	data->ea_wall = 'A';
+	data->minimap.x_start = SCREENWIDTH - SCREENWIDTH / 4;
+	data->minimap.x_end = SCREENWIDTH - 10;
+	data->minimap.y_start = SCREENHEIGHT - SCREENHEIGHT / 3.4;
+	data->minimap.y_end = SCREENHEIGHT - 10;
+	data->minimap.height = data->minimap.y_end - data->minimap.y_start;
+	data->minimap.width = data->minimap.x_end - data->minimap.x_start;
 }
 
 void	init_raycasting(t_data *data, int x)
