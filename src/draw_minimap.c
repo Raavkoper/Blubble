@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:45:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/12 15:20:53 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/14 15:21:34 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ void	draw_minimap(t_data *data)
 	int x2;
 	int y2;
 	int empty;
-	int wall;
 	int player;
 	int color;
+	int darky;
 	
-	player = create_rgba(255, 172, 28, 255);
-	wall = create_rgba(0, 71, 171, 255);
+	player = create_rgba(255, 105, 180, 255);
 	empty = create_rgba(137, 207, 240, 255);
+	darky = create_rgba(150, 150, 150, 255);
 	y = data->minimap.y_start;
 	y2 = 0;
 	while (y < data->minimap.y_end)
@@ -117,15 +117,14 @@ void	draw_minimap(t_data *data)
 				if (y2 == 7 && x2 == 7)
 					color = player;
 				else if (data->minimap.map[y2][x2] == '0')
-					color = empty;
-				else if (data->minimap.map[y2][x2] == '1')
-					color = wall;
-				else if (data->minimap.map[y2][x2] == '2')
 					color = data->f_color;
+				else if (data->minimap.map[y2][x2] == '1')
+					color = 0;
+				else if (data->minimap.map[y2][x2] == '2')
+					color = darky;
 				while (x < xhold + (data->minimap.width / 15))
 				{	
-					*(uint32_t *)(data->g_img->pixels + \
-					((y * data->g_img->width + x) * 4)) = color;
+					mlx_put_pixel(data->g_img, x, y, color);
 					x++;
 				}
 				x2++;
