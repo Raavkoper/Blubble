@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/31 13:17:44 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/10 14:06:25 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/31 13:17:44 by rkoper            #+#    #+#             */
+/*   Updated: 2022/10/14 15:42:56 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,29 @@ mlx_texture_t	*wall_texture(t_data *data)
 {
 	if (data->ray.side == 0 && data->ray.raydirx < 0)
 	{
+		if (data->we_wall == 'F')
+			return (load_fish(data));
 		return (data->tex.we);
 	}
 	else if (data->ray.side == 1 && data->ray.raydiry > 0)
 	{
+		if (data->so_wall == 'F')
+			return (load_fish(data));
 		return (data->tex.so);
 	}
-	if (data->ray.side == 1)
+	else if (data->ray.side == 1)
+	{
+		if (data->no_wall == 'F')
+			return (load_fish(data));
 		return (data->tex.no);
+	}
 	else
+	{
+		if (data->ea_wall == 'F')
+			return (load_fish(data));
 		return (data->tex.ea);
+	}
+	return (0);
 }
 
 void	raycasting(t_data *data)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 10:31:58 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/11 11:45:53 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 10:31:58 by rkoper            #+#    #+#             */
+/*   Updated: 2022/10/14 14:06:01 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	read_map(&data);
 	draw_f_c(&data, data.c_color, 'c');
 	draw_f_c(&data, data.f_color, 'f');
+	load_textures(&data);
 	raycasting(&data);
 	mlx_image_to_window(data.mlx, data.g_img, 0, 0);
 	mlx_loop_hook(data.mlx, start, &data);

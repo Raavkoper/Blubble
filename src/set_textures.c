@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:49 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 12:46:55 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:53:20 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	safe_wall_textures(t_data *data, char *line)
 
 	str = ft_calloc(strlen(line) + 1, 1);
 	str = str_cpy(str, line);
+	str[ft_strlen(str) - 1] = '\0';
 	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
 		wall_texture_no(data, str);
 	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init_data.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/09/07 10:30:47 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/11 14:01:13 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/14 14:34:31 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	init_data(t_data *data)
 	data->map.ea = 0;
 	data->map.f = 0;
 	data->map.c = 0;
+	data->no_wall = 'A';
+	data->so_wall = 'A';
+	data->we_wall = 'A';
+	data->ea_wall = 'A';
 }
 
 void	init_raycasting(t_data *data, int x)

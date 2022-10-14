@@ -1,27 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   load_animation_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:02:41 by rkoper            #+#    #+#             */
-/*   Updated: 2022/10/12 14:23:12 by svan-ass         ###   ########.fr       */
+/*   Created: 2022/10/14 12:11:10 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/14 14:08:26 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/blubble.h"
-
-void	start(void *param)
-{	
-	t_data	*data;
-
-	data = (t_data *)param;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(data->mlx);
-	data->cam.rotspeed = 0.05;
-	key_input(data);
-	draw_f_c(data, data->c_color, 'c');
-	draw_f_c(data, data->f_color, 'f');
-	raycasting(data);
-}

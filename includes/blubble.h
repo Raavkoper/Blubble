@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   blubble.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/11 13:56:31 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/14 15:43:50 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ typedef struct s_map {
 
 typedef struct s_textures {
 	mlx_texture_t	*no;
+	mlx_texture_t	*bubbles[9];
+	mlx_texture_t	*fish[13];
+	mlx_texture_t	*stone[7];
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
@@ -101,6 +104,10 @@ typedef struct s_data {
 	int				c_color;
 	int				f_color;
 	int				start_map_line;
+	char			no_wall;
+	char			so_wall;
+	char			we_wall;
+	char			ea_wall;
 }				t_data;
 
 /* main */
@@ -130,6 +137,12 @@ void	wall_texture_so(t_data *data, char *str);
 void	wall_texture_we(t_data *data, char *str);
 void	wall_texture_ea(t_data *data, char *str);
 void	double_check_map(t_data *data);
+
+/* load textures */
+void	load_textures(t_data *data);
+
+/* animations */
+mlx_texture_t	*load_fish(t_data *data);
 
 /* color */
 void	check_floor_ceiling(t_data *data, char *line, int fd);
