@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:45:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/14 15:21:34 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/16 18:30:28 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void	print_map(char map[15][15], t_data *data)
 			if (y == 7 && x == 7)
 				printf("P");
 			else
+			{
 				printf("%c", map[y][x]);
+			}
 			x++;
 		}	
 		y++;
@@ -70,11 +72,9 @@ void	update_minimap(t_data *data)
 		while (x < 15)
 		{
 			if ((int)data->cam.posy + y2 > data->map.height || (int)data->cam.posx + x2 > data->map.width \
-				|| (int)data->cam.posy + y2 < 0 || (int)data->cam.posx + x2 < 0)
+				|| (int)data->cam.posy + y2 < 0)	
 				break ;
-			else if (x == 0 || x == 14 || y == 0 || y == 14)
-				data->minimap.map[y][x] = '2';
-			else
+			if ((int)data->cam.posx + x2 >= 0 && map[(int)data->cam.posy + y2][(int)data->cam.posx + x2] != '\n')
 				data->minimap.map[y][x] = map[(int)data->cam.posy + y2][(int)data->cam.posx + x2];
 			x2++;
 			x++;
@@ -82,8 +82,8 @@ void	update_minimap(t_data *data)
 		y2++;
 		y++;
 	}
-	// print_map(data->minimap.map, data);
-	// printf("\n\n\n");
+	print_map(data->minimap.map, data);
+	printf("\n\n\n");
 }
 
 void	draw_minimap(t_data *data)
@@ -100,7 +100,7 @@ void	draw_minimap(t_data *data)
 	int darky;
 	
 	player = create_rgba(255, 105, 180, 255);
-	empty = create_rgba(137, 207, 240, 255);
+	empty = create_rgba(216, 191, 216, 255);
 	darky = create_rgba(150, 150, 150, 255);
 	y = data->minimap.y_start;
 	y2 = 0;
@@ -117,16 +117,17 @@ void	draw_minimap(t_data *data)
 				if (y2 == 7 && x2 == 7)
 					color = player;
 				else if (data->minimap.map[y2][x2] == '0')
-					color = data->f_color;
+					color = empty;
 				else if (data->minimap.map[y2][x2] == '1')
 					color = 0;
-				else if (data->minimap.map[y2][x2] == '2')
+				else
 					color = darky;
 				while (x < xhold + (data->minimap.width / 15))
 				{	
 					mlx_put_pixel(data->g_img, x, y, color);
 					x++;
 				}
+				// printf("y row: %d, x row: %d, color: %d\n", y2, x2, color);
 				x2++;
 			}
 			y++;
