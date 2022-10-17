@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/14 15:45:10 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:23:16 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_data(t_data *data)
 {
 	data->player.movespeed = 0.03;
+	data->cam.rotspeed = 0.01;
 	data->start_map_line = 1;
 	data->map.pos_count = 0;
 	data->map.no = 0;

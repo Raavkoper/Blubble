@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:45:50 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 12:44:03 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:28:10 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	elements(t_data *data, int fd, int line_count)
 			line_count += safe_wall_textures(data, line);
 		else if (line[0] == 'F' || line[0] == 'C')
 		{
-			check_floor_ceiling(data, line, fd);
+			check_floor_ceiling(data, line);
 			line_count += 1;
 		}
 		temp = line;

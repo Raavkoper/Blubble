@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:35:45 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/11 11:52:17 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:27:42 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	draw_f_c(t_data *data, uint32_t	color, char c)
 	}
 }
 
-void	check_floor_ceiling(t_data *data, char *line, int fd)
+void	check_floor_ceiling(t_data *data, char *line)
 {
 	if (line[0] == 'F')
 		color_floor(data, line);

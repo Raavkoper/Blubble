@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/17 11:53:11 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:30:05 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ typedef struct s_camera {
 	double	rotspeed;
 }				t_camera;
 
-typedef	struct s_minimap {
-	int 	x_start;
-	int 	y_start;
-	int 	x_end;
-	int 	y_end;
+typedef struct s_minimap {
+	int		x_start;
+	int		y_start;
+	int		x_end;
+	int		y_end;
 	int		width;
 	int		height;
 	char	map[15][15];
+	int		color;
 }				t_minimap;
 
 typedef struct s_raycasting {
@@ -121,72 +122,73 @@ typedef struct s_data {
 }				t_data;
 
 /* main */
-void	init_game(t_data *data);
-void	init_data(t_data *data);
-void	create_window(t_data *data);
+void			init_game(t_data *data);
+void			init_data(t_data *data);
+void			create_window(t_data *data);
 
 /* init data */
-void	init_data(t_data *data);
-void	init_raycasting(t_data *data, int x);
-void	init_camera(t_data *data);
+void			init_data(t_data *data);
+void			init_raycasting(t_data *data, int x);
+void			init_camera(t_data *data);
 
 /* raycasting */
-void	start(void *param);
-void	raycasting(t_data *data);
-void	calculate_step_direction(t_data *data);
-void	check_for_wall_hit(t_data *data);
-void	calculate_perpwalldist(t_data *data);
-void	calculate_textures(t_data *data);
-void	draw_walls(t_data *data, int x, mlx_texture_t *texture);
+void			start(void *param);
+void			raycasting(t_data *data);
+void			calculate_step_direction(t_data *data);
+void			check_for_wall_hit(t_data *data);
+void			calculate_perpwalldist(t_data *data);
+void			calculate_textures(t_data *data);
+void			draw_walls(t_data *data, int x, mlx_texture_t *texture);
 
 /* textures */
-int		safe_wall_textures(t_data *data, char *line);
-void	set_textures(t_data *data, int fd);
-void	wall_texture_no(t_data *data, char *str);
-void	wall_texture_so(t_data *data, char *str);
-void	wall_texture_we(t_data *data, char *str);
-void	wall_texture_ea(t_data *data, char *str);
-void	double_check_map(t_data *data);
+int				safe_wall_textures(t_data *data, char *line);
+void			set_textures(t_data *data, int fd);
+void			wall_texture_no(t_data *data, char *str);
+void			wall_texture_so(t_data *data, char *str);
+void			wall_texture_we(t_data *data, char *str);
+void			wall_texture_ea(t_data *data, char *str);
+void			double_check_map(t_data *data);
 
 /* load textures */
-void	load_textures(t_data *data);
+void			load_textures(t_data *data);
 
 /* animations */
 mlx_texture_t	*load_fish(t_data *data);
 
 /* color */
-void	check_floor_ceiling(t_data *data, char *line, int fd);
-void	elements(t_data *data, int fd, int line_count);
-void	color_floor(t_data *data, char *line);
-void	color_ceiling(t_data *data, char *line);
-int		wall_colors(t_data *data);
-void	draw_f_c(t_data *data, uint32_t	color, char c);
-int		create_rgba(int r, int g, int b, int a);
+void			check_floor_ceiling(t_data *data, char *line);
+void			elements(t_data *data, int fd, int line_count);
+void			color_floor(t_data *data, char *line);
+void			color_ceiling(t_data *data, char *line);
+int				wall_colors(t_data *data);
+void			draw_f_c(t_data *data, uint32_t	color, char c);
+int				create_rgba(int r, int g, int b, int a);
 
 /* keys */
-void	key_input(t_data *data);
-void	input_data_up(t_data *data);
-void	input_data_down(t_data *data);
-void	input_data_left(t_data *data);
-void	input_data_right(t_data *data);
+void			key_input(t_data *data);
+void			input_data_up(t_data *data);
+void			input_data_down(t_data *data);
+void			input_data_left(t_data *data);
+void			input_data_right(t_data *data);
+void			input_data_rotate_right(t_data *data);
 
 /* map parsing */
-void	read_map(t_data *data);
-void	init_map(t_data *data, int fd);
-void	check_width_height(t_map *map, int fd, char *line);
-void	set_textures(t_data *data, int fd);
-void	color_map(t_data *data, int fd);
-void	copy_map_2(t_map *map, char c, int *k, int i);
-void	set_player_pos(t_data *data, int i, int j, int k);
-int		check_player_direction(t_data *data, char *line, int j);
-int		map_strlen(char const *str);
+void			read_map(t_data *data);
+void			init_map(t_data *data, int fd);
+void			check_width_height(t_map *map, int fd, char *line);
+void			set_textures(t_data *data, int fd);
+void			color_map(t_data *data, int fd);
+void			copy_map_2(t_map *map, char c, int *k, int i);
+void			set_player_pos(t_data *data, int i, int j, int k);
+int				check_player_direction(t_data *data, char *line, int j);
+int				map_strlen(char const *str);
 
 /* error checking */
-void	errorr(char *s);
-void	cub_extension_check(char *map_file);
-void	check_closed_walls(t_map map);
+void			errorr(char *s);
+void			cub_extension_check(char *map_file);
+void			check_closed_walls(t_map map);
 
 /* minimap functions */
-void	update_minimap(t_data *data);
-void	draw_minimap(t_data *data);
+void			update_minimap(t_data *data);
+void			draw_minimap(t_data *data);
 #endif
