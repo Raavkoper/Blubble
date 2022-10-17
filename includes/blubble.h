@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/14 15:46:32 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:53:11 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,8 @@ typedef struct s_map {
 
 typedef struct s_textures {
 	mlx_texture_t	*no;
-	mlx_texture_t	*bubbles[9];
 	mlx_texture_t	*fish[13];
-	mlx_texture_t	*stone[7];
+	mlx_texture_t	*blub;
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
