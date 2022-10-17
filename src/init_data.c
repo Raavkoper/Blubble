@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 10:30:47 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/17 14:23:16 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_data.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/09/07 10:30:47 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/10/17 14:58:48 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/blubble.h"
+
+void	another(t_data *data)
+{
+	data->mm.y = 0;
+	data->mm.y2 = 0;
+	data->mm.yhold = 0;
+	data->mm.x = 0;
+	data->mm.x2 = 0;
+	data->mm.xhold = 0;
+}
 
 void	init_data(t_data *data)
 {
@@ -28,12 +38,13 @@ void	init_data(t_data *data)
 	data->so_wall = 'A';
 	data->we_wall = 'A';
 	data->ea_wall = 'A';
-	data->minimap.x_start = SCREENWIDTH - SCREENWIDTH / 4;
-	data->minimap.x_end = SCREENWIDTH - 10;
-	data->minimap.y_start = SCREENHEIGHT - SCREENHEIGHT / 3.4;
-	data->minimap.y_end = SCREENHEIGHT - 10;
-	data->minimap.height = data->minimap.y_end - data->minimap.y_start;
-	data->minimap.width = data->minimap.x_end - data->minimap.x_start;
+	data->mm.x_start = SCREENWIDTH - SCREENWIDTH / 4;
+	data->mm.x_end = SCREENWIDTH - 10;
+	data->mm.y_start = SCREENHEIGHT - SCREENHEIGHT / 3.4;
+	data->mm.y_end = SCREENHEIGHT - 10;
+	data->mm.height = data->mm.y_end - data->mm.y_start;
+	data->mm.width = data->mm.x_end - data->mm.x_start;
+	another(data);
 }
 
 void	init_raycasting(t_data *data, int x)

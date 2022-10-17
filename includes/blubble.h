@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   blubble.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/17 14:30:05 by svan-ass         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/10/17 14:57:54 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct s_minimap {
 	int		y_end;
 	int		width;
 	int		height;
+	int		y;
+	int		y2;
+	int		yhold;
+	int		x;
+	int		x2;
+	int		xhold;
 	char	map[15][15];
 	int		color;
 }				t_minimap;
@@ -111,7 +117,7 @@ typedef struct s_data {
 	t_player		player;
 	t_camera		cam;
 	t_textures		tex;
-	t_minimap		minimap;
+	t_minimap		mm;
 	int				c_color;
 	int				f_color;
 	int				start_map_line;
