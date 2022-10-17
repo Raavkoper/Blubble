@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   draw_minimap.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:45:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/17 13:32:09 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/17 13:32:36 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	update_minimap(t_data *data)
 	int y2;
 	int x2;
 	char **map;
-	
+
 	set_map_to_zero(data);
 	y = 0;
 	map = data->map.map;
