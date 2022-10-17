@@ -6,7 +6,7 @@
 /*   By: rkoper <rkoper@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:45:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/17 13:26:29 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/17 13:32:09 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,12 @@ void	draw_minimap(t_data *data)
 	int y2;
 	int empty;
 	int player;
-	int walls;
 	int color;
 	int darky;
 	
 	player = create_rgba(255, 105, 180, 255);
-	empty = create_rgba(216, 191, 216, 255);
-	darky = create_rgba(150, 150, 150, 255);
-	walls = create_rgba(38, 38, 255, 255);
+	empty = create_rgba(235, 190, 138, 255);
+    darky = create_rgba(110, 109, 107, 255);
 	y = data->minimap.y_start;
 	y2 = 0;
 	while (y < data->minimap.y_end)
@@ -96,9 +94,9 @@ void	draw_minimap(t_data *data)
 				if (y2 == 7 && x2 == 7)
 					color = player;
 				else if (data->minimap.map[y2][x2] == '0')
-					color = data->f_color;
+					color = empty;
 				else if (data->minimap.map[y2][x2] == '1')
-					color = walls;
+					color = 0;
 				else
 					color = darky;
 				while (x < xhold + (data->minimap.width / 15))
