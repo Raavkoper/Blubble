@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:45:50 by svan-ass          #+#    #+#             */
-/*   Updated: 2022/10/17 14:28:10 by svan-ass         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:57:10 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,19 @@ int	elements_check(char *line)
 	return (0);
 }
 
+void	check_line(char *line)
+{
+	if (!line)
+		errorr("Error not a valid map");
+}
+
 void	elements(t_data *data, int fd, int line_count)
 {
 	char	*line;
 	char	*temp;
 
 	line = get_next_line(fd);
+	check_line(line);
 	while (line_count < 6)
 	{
 		if (elements_check(line))
@@ -79,6 +86,7 @@ void	elements(t_data *data, int fd, int line_count)
 		}
 		temp = line;
 		line = get_next_line(fd);
+		check_line(line);
 		free(temp);
 		data->start_map_line += 1;
 	}

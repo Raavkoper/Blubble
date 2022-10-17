@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   read_map.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 10:39:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/12 11:03:20 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 10:39:59 by rkoper            #+#    #+#             */
+/*   Updated: 2022/10/17 14:52:03 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	parse_map(t_map *map, int fd, t_data *data)
 	char	*temp;
 
 	line = get_next_line(fd);
+	if (!line)
+		errorr("Error no map");
 	while (line[0] == '\n' || line[0] == '\0')
 	{
 		temp = line;
