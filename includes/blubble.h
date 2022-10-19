@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   blubble.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/17 15:27:02 by rkoper        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   blubble.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-ass <svan-ass@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
+/*   Updated: 2022/10/19 12:06:02 by svan-ass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <memory.h>
 # include <fcntl.h>
 # include <math.h>
-# include <time.h>
 
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
@@ -160,6 +159,7 @@ void			load_textures(t_data *data);
 
 /* animations */
 mlx_texture_t	*load_fish(t_data *data);
+mlx_texture_t	*load_fish_reverse(t_data *data);
 
 /* color */
 void			check_floor_ceiling(t_data *data, char *line);
