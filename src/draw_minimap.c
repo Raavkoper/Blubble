@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:45:59 by rkoper        #+#    #+#                 */
-/*   Updated: 2022/10/17 15:22:29 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/19 11:42:13 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ void	draw_minimap(t_data *data)
 				data->mm.xhold = data->mm.x;
 				data->mm.color = create_colors(data->mm.y2, data->mm.x2, data);
 				while (data->mm.x < data->mm.xhold + (data->mm.width / 15))
-				{	
+				{
 					mlx_put_pixel(data->g_img, data->mm.x, \
-						data->mm.y, data->mm.color);
+						data->mm.y - 10, data->mm.color);
 					data->mm.x++;
 				}
 				data->mm.x2++;

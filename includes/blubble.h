@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   blubble.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -7,6 +8,15 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:13:37 by svan-ass          #+#    #+#             */
 /*   Updated: 2022/10/19 12:06:02 by svan-ass         ###   ########.fr       */
+=======
+/*                                                        ::::::::            */
+/*   blubble.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
+/*   Updated: 2022/10/19 11:55:45 by rkoper        ########   odam.nl         */
+>>>>>>> 6dea04ff615f62af9ece2f92a5e47c69930dd7fb
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +34,8 @@
 
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
-# define SCREENWIDTH 1320
-# define SCREENHEIGHT 880
+# define SCREENWIDTH 1000
+# define SCREENHEIGHT 660
 
 typedef struct s_player {
 	double	movespeed;
