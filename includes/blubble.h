@@ -6,7 +6,7 @@
 /*   By: svan-ass <svan-ass@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/02 11:13:37 by svan-ass      #+#    #+#                 */
-/*   Updated: 2022/10/17 15:27:02 by rkoper        ########   odam.nl         */
+/*   Updated: 2022/10/19 11:55:45 by rkoper        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
-# define SCREENWIDTH 1320
-# define SCREENHEIGHT 880
+# define SCREENWIDTH 1000
+# define SCREENHEIGHT 660
 
 typedef struct s_player {
 	double	movespeed;
