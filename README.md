@@ -1,7 +1,6 @@
 # Cub3d
 
-<img src=<img width="214" alt="Screen Shot 2023-04-24 at 1 30 02 PM" src="https://user-images.githubusercontent.com/94134595/233985408-1a4a31eb-8ed0-4b20-b912-2166b92b09a6.png">
->
+<img width="214" alt="Screen Shot 2023-04-24 at 1 30 02 PM" src="https://user-images.githubusercontent.com/94134595/233985408-1a4a31eb-8ed0-4b20-b912-2166b92b09a6.png">
 
 ## Table of Contents
 
