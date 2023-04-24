@@ -9,6 +9,7 @@
 - [Installation](#installation)
 - [Controls](#controls)
 - [In-game content](#in-game-content)
+- [Contributors](#contributors)
 
 ## Introduction
 
@@ -33,3 +34,7 @@ After compilation, run `./cub3d maps/<preferred_map>` to start the game.
 ## In-game content
 
 <img src="https://github.com/steryu/Cube3d/blob/main/textures/gif/Cube3D_short.gif" width="60%" height="60%">
+
+## Contributors
+
+- [steryu](https://github.com/steryu)
