@@ -1,6 +1,7 @@
 # Cub3d
 
-<img src="https://file%2B.vscode-resource.vscode-cdn.net/Users/rkoper/Desktop/Screen%20Shot%202023-04-24%20at%201.30.02%20PM.png?version%3D1682335838223" width="30%" height="30%">
+<img src=<img width="214" alt="Screen Shot 2023-04-24 at 1 30 02 PM" src="https://user-images.githubusercontent.com/94134595/233985408-1a4a31eb-8ed0-4b20-b912-2166b92b09a6.png">
+>
 
 ## Table of Contents
 
